@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-// asdauhdoisu
+
 @WebServlet(name = "EmployeeController", urlPatterns = {"/employee/*"})
 public class EmployeeController extends HttpServlet {
     @Override
@@ -49,11 +49,11 @@ public class EmployeeController extends HttpServlet {
             }
         }
     }
-    //here
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int x = 0;
+
         Integer operation = Servlet.getOperation(req);
         if(operation == 1){
             Employee employee = new Employee(req);
