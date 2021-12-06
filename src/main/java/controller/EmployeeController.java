@@ -49,9 +49,11 @@ public class EmployeeController extends HttpServlet {
             }
         }
     }
+    //here
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int x = 0;
         Integer operation = Servlet.getOperation(req);
         if(operation == 1){
             Employee employee = new Employee(req);
