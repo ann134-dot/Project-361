@@ -87,10 +87,11 @@ form{
     min-width: min-content;
     display: flex;
     flex-direction: column;
-    height: min-content;
+    height: max-content;
     flex-basis: 100%;
     max-width: 400px;
     border-radius: 4px;
+    padding-top: 200px;
 }
 
 form h1, .submit {
@@ -212,5 +213,5 @@ a{
 }
 
 #form-login input{
-    width: inherit;
+    width: auto;
 }

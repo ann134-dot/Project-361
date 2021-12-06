@@ -2,7 +2,7 @@ package controller;
 
 import model.Booking;
 import model.Checks;
-import model.Staff;
+import model.Employee;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,11 +32,11 @@ public class CheckController extends HttpServlet {
         } else if (operation == 3) {
             Checks check = Checks.find(Servlet.getId(req));
             req.setAttribute("check", check);
-            req.setAttribute("staffList", Staff.findAll());
+            req.setAttribute("staffList", Employee.findAll());
             req.setAttribute("bookingList", Booking.findAll());
             req.getRequestDispatcher("/WEB-INF/check/form.jsp").forward(req, resp);
         } else if (operation == 4) {
-            req.setAttribute("staffList", Staff.findAll());
+            req.setAttribute("staffList", Employee.findAll());
             req.setAttribute("bookingList", Booking.findAll());
             req.getRequestDispatcher("/WEB-INF/check/form.jsp").forward(req, resp);
         }

@@ -21,7 +21,7 @@ public class APIController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer operation = getOperation(req);
         if(Servlet.isLogged(req)){
-            if(Servlet.isAllowed(req, AccessLevel.OWNER)){
+            if(Servlet.isAllowed(req, AccessLevel.MANAGER)){
                 if (operation == 4) {
                     StringBuilder json = new StringBuilder("{");
 

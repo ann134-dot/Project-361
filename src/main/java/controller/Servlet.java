@@ -1,7 +1,7 @@
 package controller;
 
 import model.AccessLevel;
-import model.Staff;
+import model.Employee;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,10 +57,10 @@ public class Servlet extends HttpServlet {
     }
 
     public static Boolean isAllowed(HttpServletRequest request, AccessLevel accessLevel){
-        Staff sessionStaff = (Staff) request.getSession().getAttribute("sessionStaff");
+        Employee sessionEmployee = (Employee) request.getSession().getAttribute("sessionEmployee");
         Servlet.resetSessionTime(request);
-        if(sessionStaff != null){
-            if(sessionStaff.getAccessLevel().equals(accessLevel) || sessionStaff.getAccessLevel().equals(AccessLevel.OWNER)){
+        if(sessionEmployee != null){
+            if(sessionEmployee.getAccessLevel().equals(accessLevel) || sessionEmployee.getAccessLevel().equals(AccessLevel.MANAGER)){
                 return true;
             }
         }
@@ -68,13 +68,13 @@ public class Servlet extends HttpServlet {
     }
 
     public static Boolean isLogged(HttpServletRequest request){
-        Staff sessionStaff = (Staff) request.getSession().getAttribute("sessionStaff");
-        return sessionStaff != null;
+        Employee sessionEmployee = (Employee) request.getSession().getAttribute("sessionEmployee");
+        return sessionEmployee != null;
     }
 
     public static void resetSessionTime(HttpServletRequest request){
-        Staff staff = (Staff) request.getSession().getAttribute("sessionStaff");
-        if(staff.getAccessLevel() == AccessLevel.OWNER){
+        Employee emp = (Employee) request.getSession().getAttribute("sessionEmployee");
+        if(emp.getAccessLevel() == AccessLevel.MANAGER){
             request.getSession().setMaxInactiveInterval(1800);
         }else{
             request.getSession().setMaxInactiveInterval(86400);

@@ -1,12 +1,13 @@
 package model;
 
-import model.dao.GenericDAO;
+import dao.GenericDAO;
 
 import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -21,16 +22,16 @@ public class Payment{
     private Booking booking;
     private LocalDateTime payTime;
     @ManyToOne
-    private Staff staff;
+    private Employee employee;
     private static GenericDAO DAO = new GenericDAO(Payment.class);
 
-    public Payment(Integer id, BigDecimal value, PaymentMethod paymentMethod, Booking booking,LocalDateTime payTime, Staff staff) {
+    public Payment(Integer id, BigDecimal value, PaymentMethod paymentMethod, Booking booking,LocalDateTime payTime, Employee employee) {
         this.id = id;
         this.value = value;
         this.paymentMethod = paymentMethod;
         this.booking = booking;
         this.payTime = payTime;
-        this.staff = staff;
+        this.employee = employee;
     }
 
     public Payment() {
@@ -61,10 +62,10 @@ public class Payment{
             this.payTime = LocalDateTime.parse(request.getParameter("pay_time"));
         }
 
-        if(request.getParameter("id_staff").isEmpty()){
-            this.staff = null;
+        if(request.getParameter("id_employee").isEmpty()){
+            this.employee = null;
         }else{
-            this.staff = Staff.find(Integer.valueOf(request.getParameter("id_staff")));
+            this.employee = Employee.find(Integer.valueOf(request.getParameter("id_employee")));
         }
     }
 
@@ -86,8 +87,8 @@ public class Payment{
             if(add[0].equals("pay_time")){
                 this.payTime = LocalDateTime.parse(add[1]);
             }
-            if(add[0].equals("id_staff")){
-                this.staff = Staff.find(Integer.valueOf(add[1]));
+            if(add[0].equals("id_employee")){
+                this.employee = Employee.find(Integer.valueOf(add[1]));
             }
         }
     }
@@ -132,8 +133,8 @@ public class Payment{
         this.payTime = payTime;
     }
 
-    public Staff getStaff() {
-        return staff;
+    public Employee getEmployee() {
+        return employee;
     }
 
     public Payment save(){

@@ -1,5 +1,6 @@
 package model;
 
 public enum AccessLevel {
-    OWNER, STAFF;
+    //OWNER, STAFF;
+    MANAGER, EMPLOYEE;
 }

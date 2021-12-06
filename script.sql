@@ -50,11 +50,16 @@ CREATE TABLE `roomtype` (
                             `name` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE `staff` (
+CREATE TABLE `employee` (
                          `id` int(11) NOT NULL,
+                         `name` varchar(255) DEFAULT NULL,
+                         `surname` varchar(255) DEFAULT NULL,
+                         `email` varchar(255) DEFAULT NULL,
+                         `address` varchar(255) DEFAULT NULL,
+                         `shift` varchar(255) DEFAULT NULL,
+                         `salary` int DEFAULT NULL,
                          `accessLevel` varchar(255) DEFAULT NULL,
                          `login` varchar(255) DEFAULT NULL,
-                         `name` varchar(255) DEFAULT NULL,
                          `password` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -85,7 +90,7 @@ ALTER TABLE `room`
 ALTER TABLE `roomtype`
     ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `staff`
+ALTER TABLE `employee`
     ADD PRIMARY KEY (`id`);
 
 
@@ -107,9 +112,9 @@ ALTER TABLE `room`
 ALTER TABLE `roomtype`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `staff`
+ALTER TABLE `employee`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-INSERT INTO `staff`(accessLevel, login, name, password)
-VALUES ('OWNER', 'admin', 'ADMIN - MUST BE DELETED OR EDITED', 'admin');
+INSERT INTO `employee`(accessLevel, login, name, password)
+VALUES ('MANAGER', 'admin', 'ADMIN - MUST BE DELETED OR EDITED', 'admin');
 COMMIT;
