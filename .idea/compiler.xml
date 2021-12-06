@@ -9,8 +9,5 @@
         <module name="HMS" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="HMS" target="8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

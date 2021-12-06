@@ -1,11 +1,9 @@
 package model;
 
-import dao.GenericDAO;
+import model.dao.GenericDAO;
 
 import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 

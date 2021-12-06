@@ -1,13 +1,12 @@
 package model;
 
-import dao.GenericDAO;
+import model.dao.GenericDAO;
 
 import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
 
 @Entity

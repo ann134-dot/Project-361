@@ -3,4 +3,3 @@
 <a href="/rooms/">Rooms</a>
 <a href="/roomTypes/">Room Types</a>
 <a href="/staff/">Staff</a>
-<a href="/reports/">Reports</a>
