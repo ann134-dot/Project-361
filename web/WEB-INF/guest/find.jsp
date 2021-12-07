@@ -23,11 +23,21 @@
     </div>
 
     <div class="edit">
-        <button class="delete" onclick="openModal('${guest.getName()}')">Delete</button>
-        <button onclick="window.location.href='/guests/${guest.getId()}/edit';">Edit</button>
+<c:if test="${sessionEmployee.getAccessLevel()}' !== 'USER'">
+        <button class="delete" onclick="openModal('${guest.getName()}')" >Delete</button>
+        <button onclick="window.location.href='/guests/${guest.getId()}/edit';" >Edit</button>
+</c:if>
     </div>
     <div class="about">
         <h2>About</h2>
+        <div class="property">
+            <span class="label">Login</span>
+            <span class="data">${guest.getLogin()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Password</span>
+            <span class="data">${guest.getPassword()}</span>
+        </div>
         <div class="property">
             <span class="label">ID</span>
             <span class="data">${guest.getId()}</span>
@@ -51,6 +61,10 @@
         <div class="property">
             <span class="label">Phone Number</span>
             <span class="data">${guest.getPhoneNumber()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Home Number</span>
+            <span class="data">${guest.getHomeNumber()}</span>
         </div>
 
     </div>
@@ -87,6 +101,7 @@
 </div>
 </body>
 <script>
+
     let modal = document.getElementById("modal-delete");
     function openModal(guest) {
         modal.style.display = "flex";

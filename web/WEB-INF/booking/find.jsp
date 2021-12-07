@@ -41,10 +41,13 @@
     </div>
 
     <div class="edit">
+
+<c:if test="${sessionEmployee.getAccessLevel()}' !== 'USER'">
 <c:if test="${allowed == true}">
         <button class="delete" onclick="openModalDelete(${booking.getId()})">Delete</button>
 </c:if>
         <button onclick="window.location.href='/bookings/${booking.getId()}/edit';">Edit</button>
+</c:if>
     </div>
     <div class="about">
         <h2>About</h2>
@@ -243,6 +246,7 @@
 
 </body>
 <script>
+
 
     function deleteCheckButton(t, test, info){
         if(test == true){
