@@ -1,3 +1,4 @@
+<a href="/hotels/">Hotels</a>
 <a href="/bookings/">Bookings</a>
 <a href="/guests/">Guests</a></a>
 <a href="/rooms/">Rooms</a>

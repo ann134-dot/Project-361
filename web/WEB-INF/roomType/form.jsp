@@ -21,7 +21,13 @@
         <label for="daily_price">Daily Price</label>
         <input type="number" name="daily_price" id="daily_price" min="0.00" max="10000.00" step="0.01"
                value="${roomType.getDailyPrice()}" required>
-
+        <label for="id_hotel">Hotel</label>
+        <select name="id_hotel" id="id_hotel" required>
+            <option disabled selected value></option>
+            <c:forEach items="${hotelList}" var="hotel">
+                <option value="${hotel.getId()}" <c:if test="${hotel.getId() == roomType.getHotel().getId()}"> selected </c:if>>${hotel.getName()}</option>
+            </c:forEach>
+        </select>
         <div class="submit">
             <button onclick="window.history.go(-1);" type="button">Cancel</button>
             <input type="submit" value="Submit" id="button">
@@ -42,8 +48,9 @@
             },
             body: new URLSearchParams({
                 'name': document.getElementById("name").value,
+                'id_hotel': document.getElementById("id_hotel").value,
                 'description': document.getElementById("description").value,
-                'daily_price': document.getElementById("daily_price").value
+                'daily_price': document.getElementById("daily_price").value,
             }),
         }).then(resp => {   window.location.href = url });
     }

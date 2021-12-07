@@ -14,11 +14,20 @@
         <h1><c:choose><c:when test="${room == null}">New</c:when><c:otherwise>Edit</c:otherwise></c:choose> Room</h1>
         <label for="number">Number</label>
         <input type="number" name="number" id="number" autofocus="autofocus" value="${room.getNumber()}" required>
+        <label for="id_hotel">Hotel</label>
+        <select name="id_hotel" id="id_hotel" required>
+            <option disabled selected value></option>
+            <c:forEach items="${hotelList}" var="hotel">
+                <option value="${hotel.getId()}" <c:if test="${hotel.getId() == room.getHotel().getId()}"> selected </c:if>>${hotel.getName()}</option>
+            </c:forEach>
+        </select>
         <label for="id_room_type">Room Type</label>
         <select name="id_room_type" id="id_room_type" required>
             <option disabled selected value></option>
             <c:forEach items="${roomTypeList}" var="roomType">
-                <option value="${roomType.getId()}" <c:if test="${roomType.getId() == room.getRoomType().getId()}"> selected </c:if>>${roomType.getName()}</option>
+                <c:if test="${roomType.getHotel().getName()!='Hilton'}">
+                <option value="${roomType.getId()}" <c:if test="${roomType.getId() == room.getRoomType().getId() && roomType.getHotel().getId() == room.getHotel().getId()}"> selected </c:if>>${roomType.getName()}</option>
+                </c:if>
             </c:forEach>
         </select>
         <div class="submit">
@@ -40,6 +49,7 @@
             },
             body: new URLSearchParams({
                 'number': document.getElementById("number").value,
+                'id_hotel': document.getElementById("id_hotel").value,
                 'id_room_type': document.getElementById("id_room_type").value,
             }),
         }).then(resp => {   window.location.href = url });
