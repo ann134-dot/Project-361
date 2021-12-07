@@ -6,10 +6,10 @@
     </div>
     <nav>
 
-        <c:if test="${sessionStaff.getAccessLevel() == 'STAFF'}">
+        <c:if test="${sessionStaff.getAccessLevel() == 'EMPLOYEE'}">
             <c:import url="/WEB-INF/header/employeeOptions.jsp"/>
         </c:if>
-        <c:if test="${sessionStaff.getAccessLevel() == 'OWNER'}">
+        <c:if test="${sessionStaff.getAccessLevel() == 'MANAGER'}">
             <c:import url="/WEB-INF/header/managerOptions.jsp"/>
         </c:if>
         <c:if test="${sessionStaff.getAccessLevel() == 'USER'}">
