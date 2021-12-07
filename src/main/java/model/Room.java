@@ -16,6 +16,8 @@ public class Room {
     private RoomType roomType;
     private String TempString;
 
+    private String TempString2;
+
     private Integer number;
     private static GenericDAO DAO = new GenericDAO(Room.class);
 
