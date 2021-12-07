@@ -61,7 +61,7 @@ public class HotelController extends HttpServlet {
         if(operation == 1 ){
             Hotel hotel = new Hotel(req);
             hotel = hotel.save();
-            resp.sendRedirect("/hotel/" + hotel.getId());
+            resp.sendRedirect("/hotels/" + hotel.getId());
         }else{
             req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
         }
