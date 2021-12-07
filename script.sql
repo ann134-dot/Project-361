@@ -11,6 +11,13 @@ CREATE TABLE `booking` (
                            `staff_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE `hotel` (
+                           `hotel_id` int(11) NOT NULL,
+                           `name` varchar(255) DEFAULT NULL,
+                           `city` varchar(255) DEFAULT NULL,
+                           `address` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE `checks` (
                           `id` int(11) NOT NULL,
                           `checkTime` datetime DEFAULT NULL,
@@ -70,6 +77,9 @@ ALTER TABLE `booking`
     ADD KEY `FKowymy55vrygpdnacvnbck2js3` (`room_id`),
     ADD KEY `FKfvwnge63uejojl97650lpyd02` (`staff_id`);
 
+ALTER TABLE `hotel`
+    ADD PRIMARY KEY (`hotel_id`);
+
 ALTER TABLE `checks`
     ADD PRIMARY KEY (`id`),
     ADD KEY `FKmeomx1m6ycre055o90qdksoyw` (`booking_id`),
@@ -97,6 +107,9 @@ ALTER TABLE `employee`
 ALTER TABLE `booking`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `hotel`
+    MODIFY `hotel_id` int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `checks`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
@@ -115,6 +128,6 @@ ALTER TABLE `roomtype`
 ALTER TABLE `employee`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-INSERT INTO `employee`(accessLevel, login, name, password)
-VALUES ('MANAGER', 'admin', 'ADMIN - MUST BE DELETED OR EDITED', 'admin');
+INSERT INTO `employee`(name, surname, email, address, shift, salary, accessLevel, login, password)
+VALUES ( 'ADMIN - MUST BE DELETED OR EDITED','admin','admin@mail.com','admin','admin','1','MANAGER', 'admin', 'admin');
 COMMIT;
