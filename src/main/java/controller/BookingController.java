@@ -25,6 +25,9 @@ public class BookingController extends HttpServlet {
         }else{
             Integer operation = Servlet.getOperation(req);
             if(operation == 1){
+                if(Servlet.isUser(req)){
+                    req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
+                }
                 List<Booking> bookingList = Booking.findAll();
                 req.setAttribute("bookingList", bookingList);
                 req.getRequestDispatcher("/WEB-INF/booking/findAll.jsp").forward(req, resp);
@@ -32,9 +35,7 @@ public class BookingController extends HttpServlet {
                 Booking booking = Booking.find(Servlet.getId(req));
                 req.setAttribute("booking", booking);
                 List<Checks> checks = Checks.findAll(booking.getId());
-                req.setAttribute("paymentList", Payment.findAll(booking.getId()));
-                req.setAttribute("paid", Payment.sumAll(booking.getId()));
-                req.setAttribute("allowed", Servlet.isAllowed(req, AccessLevel.MANAGER));
+                req.setAttribute("allowed", Servlet.isAllowed(req, AccessLevel.OWNER));
                 if(checks!=null){
                     for(Checks check : checks){
                         if(check.getStatus()){
@@ -46,6 +47,9 @@ public class BookingController extends HttpServlet {
                 }
                 req.getRequestDispatcher("/WEB-INF/booking/find.jsp").forward(req, resp);
             }else if(operation == 3){
+                if(Servlet.isUser(req)){
+                    req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
+                }
                 Booking booking = Booking.find(Servlet.getId(req));
                 req.setAttribute("booking", booking);
                 req.setAttribute("roomList", Room.findAll());
@@ -53,6 +57,9 @@ public class BookingController extends HttpServlet {
                 req.setAttribute("roomTypeList", RoomType.findAll());
                 req.getRequestDispatcher("/WEB-INF/booking/form.jsp").forward(req, resp);
             }else if(operation == 4){
+                if(Servlet.isUser(req)){
+                    req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
+                }
                 req.setAttribute("roomList", Room.findAll());
                 req.setAttribute("guestList", Guest.findAll());
                 req.setAttribute("roomTypeList", RoomType.findAll());
@@ -69,6 +76,9 @@ public class BookingController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer operation = Servlet.getOperation(req);
         if(operation == 1){
+            if(Servlet.isUser(req)){
+                req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
+            }
             Booking booking = new Booking(req);
             booking.save();
             resp.sendRedirect("/bookings/" + booking.getId());
@@ -81,6 +91,9 @@ public class BookingController extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer operation = Servlet.getOperation(req);
         if(operation == 2){
+            if(Servlet.isUser(req)){
+                req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
+            }
             BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
             String data = br.readLine();
             Booking booking = new Booking(URLDecoder.decode(data,  StandardCharsets.UTF_8.toString()).split("&"));

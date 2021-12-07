@@ -1,6 +1,6 @@
 package model;
 
-import dao.GenericDAO;
+import model.dao.GenericDAO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

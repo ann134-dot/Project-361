@@ -21,34 +21,13 @@ public class APIController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer operation = getOperation(req);
         if(Servlet.isLogged(req)){
-            if(Servlet.isAllowed(req, AccessLevel.MANAGER)){
+            if(Servlet.isAllowed(req, AccessLevel.OWNER)){
                 if (operation == 4) {
                     StringBuilder json = new StringBuilder("{");
 
                     LocalDate today = LocalDate.now();
 
-                    BigDecimal yearRevenues = new BigDecimal(0);
-                    yearRevenues = yearRevenues.add(Payment.sumAll(" WHERE year(payTime) = " + today.getYear()));
 
-                    json.append("\"yearRevenues\": " + yearRevenues.toString() + ",");
-
-                    BigDecimal monthRevenues = Payment.sumAll(" WHERE month(payTime) = " + today.getMonthValue());
-
-                    json.append("\"monthRevenues\": " + monthRevenues + ",");
-
-                    BigDecimal weekRevenues = Payment.sumAll(" WHERE date(payTime) BETWEEN  '" + today.plusDays(-7) + "' AND '" + today + "'");
-
-                    json.append("\"weekRevenues\": " + weekRevenues + ",");
-
-                    json.append("\"weekRevenuesDetailed\": {");
-                    LocalDate week = LocalDate.now();
-                    for (int i = 0; i < 7; i++) {
-
-                        BigDecimal dayRevenues = Payment.sumAll(" WHERE date(payTime) = '" + week + "'");
-                        json.append("\"" + week.getMonthValue() + "-" + week.getDayOfMonth() + "\": " + dayRevenues + ",");
-                        week = week.plusDays(-1);
-
-                    }
                     json = new StringBuilder(json.substring(0, json.length() - 1));
                     json.append("},");
 
@@ -77,12 +56,7 @@ public class APIController extends HttpServlet {
 
                     json.append("\"totalRooms\": " + (occupiedRooms + availableRooms) + ",");
 
-                    json.append(("\"trendingRooms\": {"));
-                    for (RoomType type : RoomType.findAll()) {
-                        List<Booking> total = Booking.findAll("WHERE room IN (SELECT id FROM Room WHERE roomType = " + type.getId() + ")");
-                        json.append("\"" + type.getName() + "\": " + ((total!=null)?total.size():"0") + ",");
 
-                    }
                     if(RoomType.findAll()==null || RoomType.findAll().size()==0){
                         json.append("\"No rooms registered\":\" \"  ");
                     }

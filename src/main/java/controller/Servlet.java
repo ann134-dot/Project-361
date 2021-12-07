@@ -1,7 +1,7 @@
 package controller;
 
 import model.AccessLevel;
-import model.Employee;
+import model.Staff;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,10 +57,21 @@ public class Servlet extends HttpServlet {
     }
 
     public static Boolean isAllowed(HttpServletRequest request, AccessLevel accessLevel){
-        Employee sessionEmployee = (Employee) request.getSession().getAttribute("sessionEmployee");
+        Staff sessionStaff = (Staff) request.getSession().getAttribute("sessionStaff");
         Servlet.resetSessionTime(request);
-        if(sessionEmployee != null){
-            if(sessionEmployee.getAccessLevel().equals(accessLevel) || sessionEmployee.getAccessLevel().equals(AccessLevel.MANAGER)){
+        if(sessionStaff != null){
+            if(sessionStaff.getAccessLevel().equals(accessLevel) || sessionStaff.getAccessLevel().equals(AccessLevel.OWNER)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Boolean isUser(HttpServletRequest request){
+        Staff sessionStaff = (Staff) request.getSession().getAttribute("sessionStaff");
+        Servlet.resetSessionTime(request);
+        if(sessionStaff != null){
+            if(sessionStaff.getAccessLevel().equals(AccessLevel.USER)){
                 return true;
             }
         }
@@ -68,13 +79,13 @@ public class Servlet extends HttpServlet {
     }
 
     public static Boolean isLogged(HttpServletRequest request){
-        Employee sessionEmployee = (Employee) request.getSession().getAttribute("sessionEmployee");
-        return sessionEmployee != null;
+        Staff sessionStaff = (Staff) request.getSession().getAttribute("sessionStaff");
+        return sessionStaff != null;
     }
 
     public static void resetSessionTime(HttpServletRequest request){
-        Employee emp = (Employee) request.getSession().getAttribute("sessionEmployee");
-        if(emp.getAccessLevel() == AccessLevel.MANAGER){
+        Staff staff = (Staff) request.getSession().getAttribute("sessionStaff");
+        if(staff.getAccessLevel() == AccessLevel.OWNER){
             request.getSession().setMaxInactiveInterval(1800);
         }else{
             request.getSession().setMaxInactiveInterval(86400);

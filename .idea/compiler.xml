@@ -7,12 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="HMS" />
-        <module name="Project-361" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="HMS" target="8" />
-      <module name="Project-361" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

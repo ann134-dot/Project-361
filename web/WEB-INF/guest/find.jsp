@@ -23,8 +23,8 @@
     </div>
 
     <div class="edit">
-        <button class="delete" onclick="openModal('${guest.getName()}')">Delete</button>
-        <button onclick="window.location.href='/guests/${guest.getId()}/edit';">Edit</button>
+        <button class="delete" onclick="openModal('${guest.getName()}')" id = "deleteButton">Delete</button>
+        <button onclick="window.location.href='/guests/${guest.getId()}/edit';" id = "editButton">Edit</button>
     </div>
     <div class="about">
         <h2>About</h2>
@@ -88,6 +88,14 @@
 </body>
 <script>
     let modal = document.getElementById("modal-delete");
+    let user = '${sessionStaff.getAccessLevel()}';
+    if( user == 'USER' ) {
+        document.getElementById("deleteButton").outerHTML = "";
+        document.getElementById("editButton").outerHTML = "";
+
+    } else {
+
+
     function openModal(guest) {
         modal.style.display = "flex";
         document.getElementById("sure").innerHTML = "Delete guest " + guest + "?";
@@ -104,13 +112,16 @@
 
 
     function link(id) {
-        let url = "/guests/"+ id;
+        let url = "/guests/" + id;
         fetch(url, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-        }).then(resp => {   window.location.href = "/guests" });
+        }).then(resp => {
+            window.location.href = "/guests"
+        });
+    }
     }
 </script>
 </html>

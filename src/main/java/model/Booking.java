@@ -1,6 +1,6 @@
 package model;
 
-import dao.GenericDAO;
+import model.dao.GenericDAO;
 
 import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
@@ -25,16 +25,16 @@ public class Booking{
     private LocalDate departure;
     private BigDecimal total;
     @ManyToOne
-    private Employee employee;
+    private Staff staff;
     private static GenericDAO DAO = new GenericDAO(Booking.class);
 
-    public Booking(Room room, Guest guest, LocalDate arrival, LocalDate departure, BigDecimal total, Employee employee) {
+    public Booking(Room room, Guest guest, LocalDate arrival, LocalDate departure, BigDecimal total, Staff staff) {
         this.room = room;
         this.guest = guest;
         this.arrival = arrival;
         this.departure = departure;
         this.total = total;
-        this.employee = employee;
+        this.staff = staff;
     }
 
     public Booking() {
@@ -61,8 +61,8 @@ public class Booking{
             if(add[0].equals("total")){
                 this.total = new BigDecimal(add[1]);
             }
-            if(add[0].equals("id_employee")){
-                this.employee = Employee.find(Integer.valueOf(add[1]));
+            if(add[0].equals("id_staff")){
+                this.staff = Staff.find(Integer.valueOf(add[1]));
             }
         }
     }
@@ -94,10 +94,10 @@ public class Booking{
 
         this.total = this.getRoom().getRoomType().getDailyPrice().multiply(new BigDecimal(Period.between(this.getArrival(), this.getDeparture()).getDays()));
 
-        if(request.getParameter("id_employee").isEmpty()){
-            this.employee = null;
+        if(request.getParameter("id_staff").isEmpty()){
+            this.staff = null;
         }else{
-            this.employee = Employee.find(Integer.valueOf(request.getParameter("id_employee")));
+            this.staff = Staff.find(Integer.valueOf(request.getParameter("id_staff")));
         }
     }
 
@@ -155,12 +155,12 @@ public class Booking{
         return this;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Staff getStaff() {
+        return staff;
     }
 
-    public Booking setEmployee(Employee employee) {
-        this.employee = employee;
+    public Booking setStaff(Staff staff) {
+        this.staff = staff;
         return this;
     }
 
@@ -265,7 +265,7 @@ public class Booking{
                 ", arrival=" + arrival +
                 ", departure=" + departure +
                 ", total=" + total +
-                ", employee=" + employee +
+                ", staff=" + staff +
                 '}';
     }
 

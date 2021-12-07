@@ -98,40 +98,19 @@ nav a:hover{
 }
 
 #revenues{
-    grid-area: 3/2/4/9;
+    grid-area: 3/2/4/12;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: .5fr 1fr 1fr;
     gap: 10px;
     padding: 20px;
     border: 1px solid #ddd;
 }
 
-#checks{
-    grid-area: 3/9/4/12;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: .1fr 1fr;
-    gap: 10px;
-    padding: 20px;
-    border: 1px solid #ddd;
-}
-
 #rooms{
-    grid-area: 4/2/5/9;
+    grid-area: 4/2/5/12;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(3,1fr);
     grid-template-rows: .5fr 1fr;
-    gap: 10px;
-    padding: 20px;
-    border: 1px solid #ddd;
-}
-
-#trending{
-    grid-area: 4/9/5/12;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
     gap: 10px;
     padding: 20px;
     border: 1px solid #ddd;
@@ -143,15 +122,6 @@ nav a:hover{
     font-weight: normal;
     font-size: 19px;
     height: min-content;
-}
-
-#checks h2{
-    margin: 0;
-    grid-area: 1/1/2/3;
-    font-weight: normal;
-    font-size: 19px;
-    height: min-content;
-    text-align: center;
 }
 
 .property{
@@ -167,15 +137,6 @@ nav a:hover{
 
 #revenues .data{
     font-size: 30px;
-}
-
-#checks .label{
-    font-size: 16px;
-}
-
-#checks .data{
-    font-size: 70px;
-    margin-top:30px;
 }
 
 #rooms .label{

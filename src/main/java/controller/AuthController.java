@@ -1,6 +1,6 @@
 package controller;
 
-import model.Employee;
+import model.Staff;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +24,7 @@ public class AuthController extends HttpServlet {
             }
 
         }else if(operation == 2){
-            req.getSession().removeAttribute("sessionEmployee");
+            req.getSession().removeAttribute("sessionStaff");
             resp.sendRedirect("/auth/login");
         }else{
             req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
@@ -35,7 +35,7 @@ public class AuthController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer operation = getOperation(req);
         if(operation == 1){
-            if(Employee.authenticate(req)){
+            if(Staff.authenticate(req)){
                 Servlet.resetSessionTime(req);
                 resp.sendRedirect("/dashboard");
             }else {

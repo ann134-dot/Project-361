@@ -27,17 +27,17 @@ public class RoomController extends HttpServlet {
             if(operation == 1){
                 List<Room> roomList = Room.findAll();
                 req.setAttribute("roomList", roomList);
-                req.setAttribute("allowed", Servlet.isAllowed(req, AccessLevel.MANAGER));
+                req.setAttribute("allowed", Servlet.isAllowed(req, AccessLevel.OWNER));
                 req.getRequestDispatcher("/WEB-INF/room/findAll.jsp").forward(req, resp);
             }else if(operation == 2){
                 Room room = Room.find(Servlet.getId(req));
                 req.setAttribute("room", room);
                 Booking booking = Booking.findBookedRoom(room.getId());
                 req.setAttribute("booking", booking);
-                req.setAttribute("allowed", Servlet.isAllowed(req, AccessLevel.MANAGER));
+                req.setAttribute("allowed", Servlet.isAllowed(req, AccessLevel.OWNER));
                 req.getRequestDispatcher("/WEB-INF/room/find.jsp").forward(req, resp);
             }else if(operation == 3){
-                if(Servlet.isAllowed(req, AccessLevel.MANAGER)){
+                if(Servlet.isAllowed(req, AccessLevel.OWNER)){
                     Room room = Room.find(Servlet.getId(req));
                     req.setAttribute("room", room);
                     req.setAttribute("roomTypeList", RoomType.findAll());
@@ -46,7 +46,7 @@ public class RoomController extends HttpServlet {
                     req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
                 }
             }else if(operation == 4){
-                if(Servlet.isAllowed(req, AccessLevel.MANAGER)){
+                if(Servlet.isAllowed(req, AccessLevel.OWNER)){
                     req.setAttribute("roomTypeList", RoomType.findAll());
                     req.getRequestDispatcher("/WEB-INF/room/form.jsp").forward(req, resp);
                 }else{

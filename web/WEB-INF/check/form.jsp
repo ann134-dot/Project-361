@@ -14,7 +14,7 @@
     <label for="id_staff">Staff</label>
     <select name="id_staff" id="id_staff">
         <option disabled selected value></option>
-        <c:forEach items="${employeeList}" var="staff">
+        <c:forEach items="${staffList}" var="staff">
             <option value="${staff.getId()}" <c:if test="${staff.getId() == check.getStaff().getId()}"> selected </c:if>>${staff.getName()}</option>
         </c:forEach>
     </select>
