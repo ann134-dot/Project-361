@@ -13,6 +13,9 @@
     <c:if test="${sessionEmployee.getAccessLevel() == 'MANAGER'}">
         <c:set var="css" value="/css/managerDash.css" />
     </c:if>
+    <c:if test="${sessionEmployee.getAccessLevel() == 'USER'}">
+        <c:set var="css" value="/css/dash.css" />
+    </c:if>
 
 
     <link rel="stylesheet" type="text/css" href="${css}">
@@ -26,6 +29,9 @@
 </c:if>
 <c:if test="${sessionEmployee.getAccessLevel() == 'MANAGER'}">
     <c:import url="/WEB-INF/managerDashboard.jsp"/>
+</c:if>
+<c:if test="${sessionEmployee.getAccessLevel() == 'USER'}">
+    <c:import url="/WEB-INF/userDashboard.jsp"/>
 </c:if>
 
 </body>
