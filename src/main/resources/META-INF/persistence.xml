@@ -8,9 +8,10 @@
         <class>model.Booking</class>
         <class>model.Checks</class>
         <class>model.Guest</class>
+        <class>model.Payment</class>
         <class>model.Room</class>
         <class>model.RoomType</class>
-        <class>model.Staff</class>
+        <class>model.Employee</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

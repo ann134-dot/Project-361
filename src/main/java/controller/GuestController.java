@@ -24,33 +24,21 @@ public class GuestController extends HttpServlet {
             resp.sendRedirect("/auth/login");
         }else{
             Integer operation = Servlet.getOperation(req);
-
-
             if(operation == 1){
-                if(Servlet.isUser(req)){
-                    req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
-                }
                 List<Guest> guestList = Guest.findAll();
                 req.setAttribute("guestList", guestList);
                 req.getRequestDispatcher("/WEB-INF/guest/findAll.jsp").forward(req, resp);
             }else if(operation == 2){
-
                 Guest guest = Guest.find(Servlet.getId(req));
                 List<Booking> bookingList = Booking.findAllGuest(guest.getId());
                 req.setAttribute("bookingList", bookingList);
                 req.setAttribute("guest", guest);
                 req.getRequestDispatcher("/WEB-INF/guest/find.jsp").forward(req, resp);
             }else if(operation == 3){
-                if(Servlet.isUser(req)){
-                    req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
-                }
                 Guest guest = Guest.find(Servlet.getId(req));
                 req.setAttribute("guest", guest);
                 req.getRequestDispatcher("/WEB-INF/guest/form.jsp").forward(req, resp);
             }else if(operation == 4){
-                if(Servlet.isUser(req)){
-                    req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
-                }
                 req.getRequestDispatcher("/WEB-INF/guest/form.jsp").forward(req, resp);
             }else {
                 req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
@@ -62,9 +50,6 @@ public class GuestController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer operation = Servlet.getOperation(req);
         if(operation == 1){
-            if(Servlet.isUser(req)){
-                req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
-            }
             Guest guest = new Guest(req);
             guest = guest.save();
             resp.sendRedirect("/guests/" + guest.getId());
@@ -77,9 +62,6 @@ public class GuestController extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer operation = Servlet.getOperation(req);
         if(operation == 2){
-            if(Servlet.isUser(req)){
-                req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
-            }
             BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
             String data = br.readLine();
             Guest guest = new Guest(URLDecoder.decode(data,  StandardCharsets.UTF_8.toString()).split("&"));
@@ -94,9 +76,6 @@ public class GuestController extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer operation = Servlet.getOperation(req);
         if (operation == 2) {
-            if(Servlet.isUser(req)){
-                req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
-            }
             Guest.delete(Servlet.getId(req));
             resp.sendRedirect("/guests/");
         }else {

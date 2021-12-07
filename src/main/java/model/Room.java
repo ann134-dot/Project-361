@@ -1,9 +1,10 @@
 package model;
 
-import model.dao.GenericDAO;
+import dao.GenericDAO;
 
 import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 @Entity

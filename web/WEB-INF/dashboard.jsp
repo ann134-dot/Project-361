@@ -7,15 +7,11 @@
     <meta name="viewport" content="width=device-width, user-scalable=0">
     <title>Dashboard</title>
 
-    <c:if test="${sessionStaff.getAccessLevel() == 'STAFF'}">
+    <c:if test="${sessionEmployee.getAccessLevel() == 'EMPLOYEE'}">
         <c:set var="css" value="/css/dash.css" />
     </c:if>
-    <c:if test="${sessionStaff.getAccessLevel() == 'OWNER'}">
-        <c:set var="css" value="/css/ownerDash.css" />
-    </c:if>
-
-    <c:if test="${sessionStaff.getAccessLevel() == 'USER'}">
-        <c:set var="css" value="/css/dash.css" />
+    <c:if test="${sessionEmployee.getAccessLevel() == 'MANAGER'}">
+        <c:set var="css" value="/css/managerDash.css" />
     </c:if>
 
 
@@ -25,14 +21,11 @@
 
 <c:import url="/WEB-INF/header/main.jsp"/>
 
-<c:if test="${sessionStaff.getAccessLevel() == 'STAFF'}">
-    <c:import url="/WEB-INF/staffDashboard.jsp"/>
+<c:if test="${sessionEmployee.getAccessLevel() == 'EMPLOYEE'}">
+    <c:import url="/WEB-INF/employeeDashboard.jsp"/>
 </c:if>
-<c:if test="${sessionStaff.getAccessLevel() == 'OWNER'}">
-    <c:import url="/WEB-INF/ownerDashboard.jsp"/>
-</c:if>
-<c:if test="${sessionStaff.getAccessLevel() == 'USER'}">
-    <c:import url="/WEB-INF/userDashboard.jsp"/>
+<c:if test="${sessionEmployee.getAccessLevel() == 'MANAGER'}">
+    <c:import url="/WEB-INF/managerDashboard.jsp"/>
 </c:if>
 
 </body>

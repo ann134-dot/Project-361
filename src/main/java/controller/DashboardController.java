@@ -1,6 +1,7 @@
 package controller;
 
 import model.Booking;
+import model.Payment;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,7 +28,9 @@ public class DashboardController extends HttpServlet {
             List<Booking> departureList = Booking.findAllDeparture();
             HashMap<Integer, Boolean> paid = new HashMap<Integer, Boolean>();
             if(departureList!=null) {
-
+                for(Booking book : departureList){
+                    paid.put(book.getId(), book.getTotal().equals(Payment.sumAll(book.getId())));
+                }
             }
             req.setAttribute("departureList", departureList);
             req.setAttribute("paid", paid);

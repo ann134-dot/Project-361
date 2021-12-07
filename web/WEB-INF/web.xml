@@ -14,8 +14,4 @@
     <error-page>
         <location>/WEB-INF/defaulterror.jsp</location>
     </error-page>
-    <context-param>
-        <param-name>primefaces.THEME</param-name>
-        <param-value>arya</param-value>
-    </context-param>
 </web-app>
