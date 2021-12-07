@@ -29,6 +29,10 @@
             <span class="label">Number</span>
             <span class="data">${room.getNumber()}</span>
         </div>
+        <div class="property link" onclick="window.location.href='/hotels/${room.getHotel().getId()}';">
+            <span class="label">Hotel</span>
+            <span class="data">${room.getHotel().getName()}</span>
+        </div>
         <div class="property link" onclick="window.location.href='/roomTypes/${room.getRoomType().getId()}';">
             <span class="label">Room Type</span>
             <span class="data">${room.getRoomType().getName()}</span>

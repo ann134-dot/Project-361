@@ -25,8 +25,7 @@
                 <tr onclick="window.location.href='/hotels/${hotel.getId()}';">
                     <td>${hotel.getName()}</td>
                     <td>${hotel.getCity()}</td>
-                    <td>$${hotel.getAddress()}</td>
-                    <td class="count"> - </td></tr>
+                    <td>${hotel.getAddress()}</td>
             </c:forEach>
 
             </tbody>

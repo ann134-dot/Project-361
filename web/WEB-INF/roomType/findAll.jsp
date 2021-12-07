@@ -20,11 +20,11 @@
     <div class="over">
         <table>
             <thead>
-                <tr><th>Name</th><th>Description</th><th>Daily Price</th><th>Available Rooms</th></tr>
+                <tr><th>Hotel</th><th>Name</th><th>Description</th><th>Daily Price</th><th>Available Rooms</th></tr>
             </thead>
             <tbody>
             <c:forEach items="${roomTypeList}" var="roomType">
-                <tr onclick="window.location.href='/roomTypes/${roomType.getId()}';"><td>${roomType.getName()}</td><td>${roomType.getDescription()}</td><td>$${roomType.getDailyPrice()}</td><td class="count"> - </td></tr>
+                <tr onclick="window.location.href='/roomTypes/${roomType.getId()}';"><td>${roomType.getHotel().getName()}</td><td>${roomType.getName()}</td><td>${roomType.getDescription()}</td><td>$${roomType.getDailyPrice()}</td><td class="count"> - </td></tr>
             </c:forEach>
 
             </tbody>

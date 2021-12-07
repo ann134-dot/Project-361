@@ -13,7 +13,7 @@ import java.util.List;
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer hotel_id;
+    private Integer id;
     private String city;
     private String name;
     private String address;
@@ -65,11 +65,11 @@ public class Hotel {
         }
     }
     public Integer getId() {
-        return hotel_id;
+        return id;
     }
 
-    public Hotel setId(Integer hotel_id) {
-        this.hotel_id = hotel_id;
+    public Hotel setId(Integer id) {
+        this.id = id;
         return this;
     }
 
@@ -135,7 +135,7 @@ public class Hotel {
     @Override
     public String toString() {
         return "Hotel{" +
-                "hotel_id=" + hotel_id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", city='" + city + '\'' +
                 ", address=" + address +
@@ -144,7 +144,7 @@ public class Hotel {
 
     public String toJSON(){
         return "{" +
-                "\"hotel_id\":\"" + hotel_id + "\""+
+                "\"id\":\"" + id + "\""+
                 ", \"name\":\"" + name +"\""+
                 ", \"city\":\"" + city +"\""+
                 ", \"address\":\"" + address + "\""+

@@ -12,7 +12,7 @@ CREATE TABLE `booking` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `hotel` (
-                           `hotel_id` int(11) NOT NULL,
+                           `id` int(11) NOT NULL,
                            `name` varchar(255) DEFAULT NULL,
                            `city` varchar(255) DEFAULT NULL,
                            `address` varchar(255) DEFAULT NULL
@@ -51,11 +51,13 @@ CREATE TABLE `payment` (
 CREATE TABLE `room` (
                         `id` int(11) NOT NULL,
                         `number` int(11) DEFAULT NULL,
-                        `roomType_id` int(11) DEFAULT NULL
+                        `roomType_id` int(11) DEFAULT NULL,
+                        `hotel_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `roomtype` (
                             `id` int(11) NOT NULL,
+                            `hotel_id` int(11) NOT NULL,
                             `dailyPrice` decimal(19,2) DEFAULT NULL,
                             `description` varchar(255) DEFAULT NULL,
                             `name` varchar(255) DEFAULT NULL
@@ -82,7 +84,7 @@ ALTER TABLE `booking`
     ADD KEY `FKfvwnge63uejojl97650lpyd02` (`employee_id`);
 
 ALTER TABLE `hotel`
-    ADD PRIMARY KEY (`hotel_id`);
+    ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `checks`
     ADD PRIMARY KEY (`id`),
@@ -99,10 +101,12 @@ ALTER TABLE `payment`
 
 ALTER TABLE `room`
     ADD PRIMARY KEY (`id`),
-    ADD KEY `FKklafyw0cu1h3eo2m7vl1f4ga1` (`roomType_id`);
+    ADD KEY `FKklafyw0cu1h3eo2m7vl1f4ga1` (`roomType_id`),
+    ADD KEY `FKkavcyw02u1h4eo2m3el1f4gb6` (`hotel_id`);
 
 ALTER TABLE `roomtype`
-    ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`),
+    ADD KEY `FKklbcww2cu2h3eo2m7vl1f3ga4` (`hotel_id`);
 
 ALTER TABLE `employee`
     ADD PRIMARY KEY (`id`);
@@ -112,7 +116,7 @@ ALTER TABLE `booking`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `hotel`
-    MODIFY `hotel_id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `checks`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
@@ -134,4 +138,7 @@ ALTER TABLE `employee`
 
 INSERT INTO `employee`(name, surname, email, address, shift, salary, accessLevel, login, password)
 VALUES ( 'ADMIN - MUST BE DELETED OR EDITED','admin','admin@mail.com','admin','admin','1','MANAGER', 'admin', 'admin');
+COMMIT;
+INSERT INTO `hotel`(name, city, address)
+VALUES ( 'Raddison','Nur-Sultan','Sauran 2'), ('Hilton','Nur-Sultan','Turan 5'), ('Rixos','Almaty','Street 4');
 COMMIT;

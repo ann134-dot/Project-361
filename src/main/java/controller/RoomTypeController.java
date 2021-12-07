@@ -1,7 +1,6 @@
 package controller;
 
-import model.AccessLevel;
-import model.RoomType;
+import model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,12 +38,14 @@ public class RoomTypeController extends HttpServlet {
                     Integer id = Servlet.getId(req);
                     RoomType roomType = RoomType.find(id);
                     req.setAttribute("roomType", roomType);
+                    req.setAttribute("hotelList", Hotel.findAll());
                     req.getRequestDispatcher("/WEB-INF/roomType/form.jsp").forward(req, resp);
                 }else{
                     req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
                 }
             }else if(operation == 4){
                 if(Servlet.isAllowed(req, AccessLevel.MANAGER)){
+                    req.setAttribute("hotelList", Hotel.findAll());
                     req.getRequestDispatcher("/WEB-INF/roomType/form.jsp").forward(req, resp);
                 }else{
                     req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);

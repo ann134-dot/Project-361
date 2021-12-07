@@ -27,6 +27,10 @@
         </div>
         <div class="property">
             <span class="label">Name</span>
+            <span class="data">${roomType.getHotel().getName()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Name</span>
             <span class="data">${roomType.getName()}</span>
         </div>
         <div class="property">

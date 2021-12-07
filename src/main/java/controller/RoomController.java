@@ -41,6 +41,7 @@ public class RoomController extends HttpServlet {
                     Room room = Room.find(Servlet.getId(req));
                     req.setAttribute("room", room);
                     req.setAttribute("roomTypeList", RoomType.findAll());
+                    req.setAttribute("hotelList", Hotel.findAll());
                     req.getRequestDispatcher("/WEB-INF/room/form.jsp").forward(req, resp);
                 }else{
                     req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
@@ -48,6 +49,7 @@ public class RoomController extends HttpServlet {
             }else if(operation == 4){
                 if(Servlet.isAllowed(req, AccessLevel.MANAGER)){
                     req.setAttribute("roomTypeList", RoomType.findAll());
+                    req.setAttribute("hotelList", Hotel.findAll());
                     req.getRequestDispatcher("/WEB-INF/room/form.jsp").forward(req, resp);
                 }else{
                     req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);

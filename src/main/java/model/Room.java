@@ -14,11 +14,14 @@ public class Room {
     private Integer id;
     @ManyToOne
     private RoomType roomType;
+    @ManyToOne
+    private Hotel hotel;
     private Integer number;
     private static GenericDAO DAO = new GenericDAO(Room.class);
 
-    public Room(RoomType roomType, Integer number) {
+    public Room(RoomType roomType, Hotel hotel, Integer number) {
         this.roomType = roomType;
+        this.hotel = hotel;
         this.number = number;
     }
 
@@ -31,7 +34,10 @@ public class Room {
             if (add.length == 1) {
                 continue;
             }
-            if (add[0].equals("id_room_type")) {
+            if(add[0].equals("id_hotel")){
+                this.hotel = Hotel.find(Integer.valueOf(add[1]));
+            }
+            if (add[0].equals("id_hotel")) {
                 this.roomType = RoomType.find(Integer.valueOf(add[1]));
             }
             if (add[0].equals("number")) {
@@ -46,7 +52,11 @@ public class Room {
         } else {
             this.roomType = RoomType.find(Integer.valueOf(request.getParameter("id_room_type")));
         }
-
+        if(request.getParameter("id_hotel").isEmpty()){
+            this.hotel = null;
+        }else{
+            this.hotel = Hotel.find(Integer.valueOf(request.getParameter("id_hotel")));
+        }
         if (request.getParameter("number").isEmpty()) {
             this.number = null;
         } else {
@@ -84,6 +94,15 @@ public class Room {
 
     public Room setRoomType(RoomType roomType) {
         this.roomType = roomType;
+        return this;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public Room setHotel(Hotel hotel) {
+        this.hotel = hotel;
         return this;
     }
 
@@ -137,6 +156,7 @@ public class Room {
         return "Room{" +
                 "id=" + id +
                 ", roomType=" + roomType +
+                ", hotel=" + hotel +
                 ", number=" + number +
                 '}';
     }
@@ -144,6 +164,7 @@ public class Room {
     public String toJSON() {
         return "{" +
                 "\"id\":\"" + id + "\"" +
+                ", \"hotel\":\"" + hotel + "\"" +
                 ", \"number\":\"" + number + "\"" +
                 "}";
     }

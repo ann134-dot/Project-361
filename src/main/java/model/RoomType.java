@@ -2,10 +2,7 @@ package model;
 
 import dao.GenericDAO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -16,12 +13,15 @@ public class RoomType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @ManyToOne
+    private Hotel hotel;
     private String name;
     private String description;
     private BigDecimal dailyPrice;
     private static GenericDAO DAO = new GenericDAO(RoomType.class);
 
-    public RoomType(String name, String description, BigDecimal dailyPrice) {
+    public RoomType(Hotel hotel, String name, String description, BigDecimal dailyPrice) {
+        this.hotel = hotel;
         this.name = name;
         this.description = description;
         this.dailyPrice = dailyPrice;
@@ -35,6 +35,9 @@ public class RoomType {
             String[] add = x.split("=");
             if(add.length == 1){
                 continue;
+            }
+            if(add[0].equals("id_hotel")){
+                this.hotel = Hotel.find(Integer.valueOf(add[1]));
             }
             if(add[0].equals("name")){
                 this.name = add[1];
@@ -50,6 +53,13 @@ public class RoomType {
     }
 
     public RoomType(HttpServletRequest request){
+
+        if(request.getParameter("id_hotel").isEmpty()){
+            this.hotel = null;
+        }else{
+            this.hotel = Hotel.find(Integer.valueOf(request.getParameter("id_hotel")));
+        }
+
         if(request.getParameter("name").isEmpty()){
             this.name = null;
         }else{
@@ -75,6 +85,15 @@ public class RoomType {
 
     public RoomType setId(Integer id) {
         this.id = id;
+        return this;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public RoomType setHotel(Hotel hotel) {
+        this.hotel = hotel;
         return this;
     }
 
@@ -141,6 +160,7 @@ public class RoomType {
     public String toString() {
         return "RoomType{" +
                 "id=" + id +
+                ", hotel='" + hotel + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", dailyPrice=" + dailyPrice +
@@ -150,6 +170,7 @@ public class RoomType {
     public String toJSON(){
         return "{" +
                 "\"id\":\"" + id + "\""+
+                ", \"hotel\":\"" + hotel +"\""+
                 ", \"name\":\"" + name +"\""+
                 ", \"description\":\"" + description +"\""+
                 ", \"dailyPrice\":\"" + dailyPrice + "\""+
