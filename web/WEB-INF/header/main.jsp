@@ -12,7 +12,7 @@
         <c:if test="${sessionEmployee.getAccessLevel() == 'MANAGER'}">
             <c:import url="/WEB-INF/header/managerOptions.jsp"/>
         </c:if>
-        <c:if test="${sessionEmployee.getAccessLevel() == 'MANAGER'}">
+        <c:if test="${sessionEmployee.getAccessLevel() == 'USER'}">
             <c:import url="/WEB-INF/header/userOptions.jsp"/>
         </c:if>
 
