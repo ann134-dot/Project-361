@@ -18,6 +18,9 @@
     <div class="submit">
         <input type="submit" value="Login">
     </div>
+    <div class="submit">
+        <a href="/guests/new" >Registration</a>
+    </div>
 </form>
 
 <script>

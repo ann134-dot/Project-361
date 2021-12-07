@@ -67,6 +67,17 @@ public class Servlet extends HttpServlet {
         return false;
     }
 
+    public static Boolean isUser(HttpServletRequest request){
+        Employee sessionEmployee = (Employee) request.getSession().getAttribute("sessionEmployee");
+        Servlet.resetSessionTime(request);
+        if(sessionEmployee != null){
+            if( sessionEmployee.getAccessLevel().equals(AccessLevel.USER)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static Boolean isLogged(HttpServletRequest request){
         Employee sessionEmployee = (Employee) request.getSession().getAttribute("sessionEmployee");
         return sessionEmployee != null;
