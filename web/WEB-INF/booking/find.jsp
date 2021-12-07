@@ -246,10 +246,7 @@
 
 </body>
 <script>
-    if ('${sessionEmployee.getAccessLevel()}' == 'USER'){
-        document.getElementById("deleteButton").outerHTML = "";
 
-    }
 
     function deleteCheckButton(t, test, info){
         if(test == true){
