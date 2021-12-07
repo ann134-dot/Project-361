@@ -31,6 +31,14 @@
                 <option value="${accessLevel}" <c:if test="${accessLevel == employee.getAccessLevel()}"> selected </c:if>>${accessLevel}</option>
             </c:forEach>
         </select>
+        <label for="id_hotel">Hotel</label>
+        <select name="id_hotel" id="id_hotel" required>
+            <option disabled selected value></option>
+            <c:forEach items="${hotelList}" var="hotel">
+                <c:if test="${sessionEmployee.getHotel().getId() == hotel.getId()}"><option value="${hotel.getId()}" <c:if test="${hotel.getId() == employee.getHotel().getId()}"> selected </c:if>>${hotel.getName()}</option>
+                </c:if>
+            </c:forEach>
+        </select>
         <label for="login">Login</label>
         <input type="text" name="login" id="login" required autocomplete="off" value="${employee.getLogin()}" required>
         <label for="password">Password</label>

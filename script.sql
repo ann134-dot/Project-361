@@ -47,6 +47,7 @@ CREATE TABLE `payment` (
 CREATE TABLE `room` (
                         `id` int(11) NOT NULL,
                         `number` int(11) DEFAULT NULL,
+                        `clean` int(11) DEFAULT NULL,
                         `roomType_id` int(11) DEFAULT NULL,
                         `hotel_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -61,6 +62,7 @@ CREATE TABLE `roomtype` (
 
 CREATE TABLE `employee` (
                          `id` int(11) NOT NULL,
+                         `hotel_id` int(11) NOT NULL,
                          `name` varchar(255) DEFAULT NULL,
                          `surname` varchar(255) DEFAULT NULL,
                          `email` varchar(255) DEFAULT NULL,
@@ -105,7 +107,8 @@ ALTER TABLE `roomtype`
     ADD KEY `FKklbcww2cu2h3eo2m7vl1f3ga4` (`hotel_id`);
 
 ALTER TABLE `employee`
-    ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`),
+    ADD KEY `FKk12ccc2cu2h3eo2m7vl1f3ga4` (`hotel_id`);
 
 
 ALTER TABLE `booking`
@@ -132,9 +135,15 @@ ALTER TABLE `roomtype`
 ALTER TABLE `employee`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-INSERT INTO `employee`(name, surname, email, address, shift, salary, accessLevel, login, password)
-VALUES ( 'ADMIN - MUST BE DELETED OR EDITED','admin','admin@mail.com','admin','admin','1','MANAGER', 'admin', 'admin');
+INSERT INTO `employee`(hotel_id, name, surname, email, address, shift, salary, accessLevel, login, password)
+VALUES ('1','ADMIN','admin','admin@mail.com','admin','admin','1','MANAGER', 'admin', 'admin');
 COMMIT;
 INSERT INTO `hotel`(name, city, address)
 VALUES ( 'Raddison','Nur-Sultan','Sauran 2'), ('Hilton','Nur-Sultan','Turan 5'), ('Rixos','Almaty','Street 4');
+COMMIT;
+INSERT INTO `roomtype`(hotel_id, dailyPrice, description, name)
+VALUES ( '1','20','for two','Lux'), ('1','10','for two','General'), ('2','20','for two','Lux');
+COMMIT;
+INSERT INTO `room`(number, clean, roomType_id, hotel_id)
+VALUES ( '1','0','1','1'), ('2','0','1','1'), ('3','0','1','1');
 COMMIT;

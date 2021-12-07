@@ -18,23 +18,43 @@
             </thead>
             <tbody>
                 <c:forEach items="${roomList}" var="room">
-                    <tr onclick="window.location.href='/rooms/${room.getId()}';"><td>${room.getId()}</td><td>${room.getNumber()}</td><td>${room.getHotel().getName()}</td>><td>${room.getRoomType().getName()}</td><td>${room.getAvailability()}</td></tr>
+                    <c:if test="${room.getClean()==0}">
+                    <tr onclick="window.location.href='/rooms/${room.getId()}';">
+                        <td>${room.getId()}</td>
+                        <td>${room.getNumber()}</td>
+                        <td>${room.getHotel().getName()}</td>
+                        <td>${room.getRoomType().getName()}</td>
+                        <td>${room.getAvailability()}</td>
+                    </tr>
+                    <button onclick="clean(${room.getId()},${room.getNumber()},${room.getHotel().getId()},${room.getRoomType().getId()})">Clean</button>
+                    </c:if>
                 </c:forEach>
             </tbody>
         </table>
     </div>
 
     </table>
-    <c:if test="${allowed == true}">
-    <div class="submit">
-        <button onclick="window.location.href='/rooms/new';">New Room</button>
-    </div>
-    </c:if>
 </div>
 
 </body>
 
 <script>
+    function clean(id, number, hotel_id, roomType_id){
+        let url = "/rooms/"+id;
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                'number': number,
+                'id_hotel': hotel_id,
+                'id_room_type': roomType_id,
+                'clean': 1,
+            }),
+        }).then(resp => {   window.location.href = "/rooms/" });
+    }
     function link(id) {
         console.log(id);
         let url = "/rooms/"+ id;
