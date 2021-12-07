@@ -14,6 +14,8 @@ public class Room {
     private Integer id;
     @ManyToOne
     private RoomType roomType;
+    private String TempString;
+
     private Integer number;
     private static GenericDAO DAO = new GenericDAO(Room.class);
 
