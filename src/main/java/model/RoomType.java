@@ -19,6 +19,9 @@ public class RoomType {
     private String name;
     private String description;
     private BigDecimal dailyPrice;
+
+    private String TempVar;
+
     private static GenericDAO DAO = new GenericDAO(RoomType.class);
 
     public RoomType(String name, String description, BigDecimal dailyPrice) {
