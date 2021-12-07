@@ -35,9 +35,9 @@
                 <option value="${guest.getId()}" <c:if test="${guest.getId() == booking.getGuest().getId()}"> selected </c:if>>${guest.getName()}</option>
             </c:forEach>
         </select>
-        <input type="text" value="${sessionStaff.getId()}" style="display: none" id="id_staff" name="id_staff">
+        <input type="text" value="${sessionEmployee.getId()}" style="display: none" id="id_employee" name="id_employee">
         <span class="total">Total $<span id="result">${booking.getTotal()}</span></span>
-        <input type="number" style="display: none" name="id_staff" id="id_staff" value="${sessionStaff.getId()}">
+        <input type="number" style="display: none" name="id_employee" id="id_employee" value="${sessionEmployee.getId()}">
         <div class="submit">
             <button onclick="window.history.go(-1);" type="button">Cancel</button>
             <input type="submit" value="Submit" id="button">
@@ -61,7 +61,7 @@
                 'id_guest': document.getElementById("id_guest").value,
                 'arrival': document.getElementById("arrival").value,
                 'departure': document.getElementById("departure").value,
-                'id_staff': ${sessionStaff.getId()},
+                'id_employee': ${sessionEmployee.getId()},
                 'total': totalCalc
             }),
         }).then(resp => {   window.location.href = url });

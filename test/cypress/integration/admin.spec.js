@@ -19,22 +19,22 @@ describe('Admin', () => {
 
     cy.location('pathname').should('include', '/dashboard');
 
-    cy.get('a').contains('Staff').click();
+    cy.get('a').contains('Employee').click();
 
-    cy.contains('Staff').should('be.visible');
+    cy.contains('Employee').should('be.visible');
 
-    cy.get('button').contains('New Staff').click();
+    cy.get('button').contains('New Employee').click();
 
-    cy.get('input[name="name"]').type('staff');
-    cy.get('select[name="access_level"]').select('STAFF');
-    cy.get('input[name="login"]').type('staff');
-    cy.get('input[name="password"]').type('staff');
+    cy.get('input[name="name"]').type('employee');
+    cy.get('select[name="access_level"]').select('EMPLOYEE');
+    cy.get('input[name="login"]').type('employee');
+    cy.get('input[name="password"]').type('employee');
 
     cy.get('input[type="submit"]').contains('Submit').click();
 
-    cy.visit('localhost:8080/staff');
-    cy.location('pathname').should('include', '/staff');
-    cy.get('table').contains('td', 'staff').should('be.visible');
+    cy.visit('localhost:8080/employee');
+    cy.location('pathname').should('include', '/employee');
+    cy.get('table').contains('td', 'employee').should('be.visible');
 
   });
 

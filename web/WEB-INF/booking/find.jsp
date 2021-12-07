@@ -85,9 +85,9 @@
                     <tbody>
                     <c:forEach items="${paymentList}" var="payment">
                         <tr>
-                            <td <c:if test="${allowed == true}">onclick="openModalPayment(${payment.getValue()}, '${payment.getPaymentMethod()}', ${booking.getTotal() - paid}, ${payment.getId()},'${payment.getStaff().getName()}')" </c:if>>$${payment.getValue()}</td>
-                            <td <c:if test="${allowed == true}">onclick="openModalPayment(${payment.getValue()}, '${payment.getPaymentMethod()}', ${booking.getTotal() - paid}, ${payment.getId()},'${payment.getStaff().getName()}')" </c:if>>${payment.getPaymentMethod()}</td>
-                            <td <c:if test="${allowed == true}">onclick="openModalPayment(${payment.getValue()}, '${payment.getPaymentMethod()}', ${booking.getTotal() - paid}, ${payment.getId()},'${payment.getStaff().getName()}')" </c:if>>${payment.getPayTime()}</td>
+                            <td <c:if test="${allowed == true}">onclick="openModalPayment(${payment.getValue()}, '${payment.getPaymentMethod()}', ${booking.getTotal() - paid}, ${payment.getId()},'${payment.getEmployee().getName()}')" </c:if>>$${payment.getValue()}</td>
+                            <td <c:if test="${allowed == true}">onclick="openModalPayment(${payment.getValue()}, '${payment.getPaymentMethod()}', ${booking.getTotal() - paid}, ${payment.getId()},'${payment.getEmployee().getName()}')" </c:if>>${payment.getPaymentMethod()}</td>
+                            <td <c:if test="${allowed == true}">onclick="openModalPayment(${payment.getValue()}, '${payment.getPaymentMethod()}', ${booking.getTotal() - paid}, ${payment.getId()},'${payment.getEmployee().getName()}')" </c:if>>${payment.getPayTime()}</td>
                             <c:if test="${allowed == true}">
                                 <td class="delPayment delHide" onclick="openModalDeletePayment(${payment.getId()}, ${payment.getValue()})">Delete</td>
                             </c:if>
@@ -201,7 +201,7 @@
                 <label for="room_number">Room</label>
                 <input type="text" name="room_number" id="room_number" readonly>
                 <input type="number" name="status" id="status" style="display: none">
-                <input type="number" style="display: none" name="id_staff" id="id_staff" value="${sessionStaff.getId()}">
+                <input type="number" style="display: none" name="id_employee" id="id_employee" value="${sessionEmployee.getId()}">
                 <div class="modal-footer">
                     <button onclick="cancel()" type="button">Cancel</button>
                     <input type="submit" value="Submit" id="button">
@@ -226,9 +226,9 @@
                     <option value="CASH">CASH</option>
                     <option value="CARD">CARD</option>
                 </select>
-                <label for="id_staff_payment" style="display: none">Staff</label>
-                <input type="text" style="display: none" name="id_staff_payment" id="id_staff_payment"
-                       value="${sessionStaff.getName()}" readonly>
+                <label for="id_employee_payment" style="display: none">Employee</label>
+                <input type="text" style="display: none" name="id_employee_payment" id="id_employee_payment"
+                       value="${sessionEmployee.getName()}" readonly>
                 <input type="number" style="display: none" name="id_payment" id="id_payment" readonly>
                 <input type="text" name="id_pay_booking" id="id_pay_booking" style="display: none" value="${booking.getId()}">
                 <input type="datetime-local" name="pay_time" id="pay_time" autocomplete="off" style="display: none">
@@ -269,7 +269,7 @@
                 'value': document.getElementById("value").value,
                 'payment_method': document.getElementById("payment_method").value,
                 'id_booking': document.getElementById("id_pay_booking").value,
-                'id_staff': ${sessionStaff.getId()},
+                'id_employee': ${sessionEmployee.getId()},
                 'pay_time':document.getElementById("pay_time").value
             }),
         }).then(resp => { location.reload() });
@@ -289,7 +289,7 @@
                 'value': document.getElementById("value").value,
                 'payment_method': document.getElementById("payment_method").value,
                 'id_booking': document.getElementById("id_pay_booking").value,
-                'id_staff': ${sessionStaff.getId()},
+                'id_employee': ${sessionEmployee.getId()},
                 'pay_time':document.getElementById("pay_time").value
             }),
         }).then(resp => { location.reload() });
@@ -399,7 +399,7 @@
         }
     };
 
-    function openModalPayment(value, method, remaining, id, staff) {
+    function openModalPayment(value, method, remaining, id, employee) {
         modalPayment.style.display = "flex";
         if((value !== null) && (method !== null) && (remaining != null) && (id != null)){
             document.getElementById("value").value = value;
@@ -415,9 +415,9 @@
             document.getElementById("pay-form").action = "";
             changeMethod();
             document.getElementById("pay-button").value = "Edit";
-            document.getElementById("id_staff_payment").style.display = "block";
-            document.querySelector("label[for='id_staff_payment']").style.display = "block";
-            document.getElementById("id_staff_payment").value = staff;
+            document.getElementById("id_employee_payment").style.display = "block";
+            document.querySelector("label[for='id_employee_payment']").style.display = "block";
+            document.getElementById("id_employee_payment").value = employee;
         }else{
             document.querySelector("#pay-form #id_payment").value = 0;
             document.getElementById("value").max =${booking.getTotal() - paid};
@@ -426,8 +426,8 @@
             document.getElementById("pay-button").value = "Receive";
             document.querySelector("#modal-payment h1").innerHTML = "Payment";
             document.getElementById("pay-form").action = "/payments";
-            document.getElementById("id_staff_payment").style.display = "none";
-            document.querySelector("label[for='id_staff_payment']").style.display = "none";
+            document.getElementById("id_employee_payment").style.display = "none";
+            document.querySelector("label[for='id_employee_payment']").style.display = "none";
             changeMethod();
         }
         let now = new Date();

@@ -11,7 +11,7 @@
 <c:import url="/WEB-INF/header/main.jsp"/>
 <div class="content">
     <form action="/employee" id="form" <c:if test="${employee == null}">method="POST" </c:if> >
-        <h1><c:choose><c:when test="${employee == null}">New</c:when><c:otherwise>Edit</c:otherwise></c:choose> Staff</h1>
+        <h1><c:choose><c:when test="${employee == null}">New</c:when><c:otherwise>Edit</c:otherwise></c:choose>Employee</h1>
         <label for="name">Name</label>
         <input type="text" name="name" id="name" autocomplete="off" autofocus="autofocus" required value="${employee.getName()}" required>
         <label for="surname">Surname</label>
