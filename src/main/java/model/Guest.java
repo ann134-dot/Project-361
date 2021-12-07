@@ -1,7 +1,6 @@
 package model;
 
 import dao.GenericDAO;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,19 +14,27 @@ public class Guest{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String login;
+    private String password;
     private String name;
+    private String documentType;
     private String document;
     private LocalDate birthDate;
     private String email;
     private String phoneNumber;
+    private String homeNumber;
     private static GenericDAO DAO = new GenericDAO(Guest.class);
 
-    public Guest(String name, String document, LocalDate birthDate, String email, String phoneNumber) {
+    public Guest(String login, String password, String name, String documentType, String document, LocalDate birthDate, String email, String phoneNumber, String homeNumber) {
+        this.login = login;
+        this.password = password;
         this.name = name;
+        this.documentType = documentType;
         this.document = document;
         this.birthDate = birthDate;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.homeNumber = homeNumber;
     }
 
     public Guest() {
@@ -39,8 +46,17 @@ public class Guest{
             if(add.length == 1){
                 continue;
             }
+            if(add[0].equals("login")){
+                this.login = add[1];
+            }
+            if(add[0].equals("password")){
+                this.password = add[1];
+            }
             if(add[0].equals("name")){
                 this.name = add[1];
+            }
+            if(add[0].equals("documentType")){
+                this.documentType = add[1];
             }
             if(add[0].equals("document")){
                 this.document = add[1];
@@ -54,14 +70,35 @@ public class Guest{
             if(add[0].equals("phone_number")){
                 this.phoneNumber = add[1];
             }
+            if(add[0].equals("home_number")){
+                this.homeNumber = add[1];
+            }
         }
     }
 
     public Guest(HttpServletRequest request) {
+        if(request.getParameter("login").isEmpty()){
+            this.login = null;
+        }else {
+            this.login = request.getParameter("login");
+        }
+
+        if(request.getParameter("password").isEmpty()){
+            this.password = null;
+        }else {
+            this.password = request.getParameter("password");
+        }
+
         if(request.getParameter("name").isEmpty()){
             this.name = null;
         }else {
             this.name = request.getParameter("name");
+        }
+
+        if(request.getParameter("document_type").isEmpty()){
+            this.documentType = null;
+        }else {
+            this.documentType = request.getParameter("document_type");
         }
 
         if(request.getParameter("document").isEmpty()){
@@ -87,6 +124,31 @@ public class Guest{
         }else{
             this.phoneNumber = request.getParameter("phone_number");
         }
+
+        if(request.getParameter("home_number").isEmpty()){
+            this.homeNumber = null;
+        }else {
+            this.homeNumber = request.getParameter("home_number");
+        }
+
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public Guest setLogin(String login) {
+        this.login = login;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Guest setPassword(String password) {
+        this.password = password;
+        return this;
     }
 
     public Integer getId() {
@@ -104,6 +166,15 @@ public class Guest{
 
     public Guest setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public Guest setDocumentType(String documentType) {
+        this.documentType = documentType;
         return this;
     }
 
@@ -143,6 +214,15 @@ public class Guest{
         return this;
     }
 
+    public String getHomeNumber() {
+        return homeNumber;
+    }
+
+    public Guest setHomeNumber(String homeNumber) {
+        this.homeNumber = homeNumber;
+        return this;
+    }
+
     public static Guest save(Guest guest){
         return (Guest) DAO.save(guest);
     }
@@ -174,12 +254,16 @@ public class Guest{
     @Override
     public String toString() {
         return "Guest{" +
-                "id=" + id +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", id=" + id +
                 ", name='" + name + '\'' +
+                ", documentType='" + documentType + '\'' +
                 ", document='" + document + '\'' +
                 ", birthDate=" + birthDate +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", homeNumber='" + homeNumber + '\'' +
                 '}';
     }
 }

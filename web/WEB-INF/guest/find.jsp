@@ -29,6 +29,14 @@
     <div class="about">
         <h2>About</h2>
         <div class="property">
+            <span class="label">Login</span>
+            <span class="data">${guest.getLogin()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Password</span>
+            <span class="data">${guest.getPassword()}</span>
+        </div>
+        <div class="property">
             <span class="label">ID</span>
             <span class="data">${guest.getId()}</span>
         </div>
@@ -51,6 +59,10 @@
         <div class="property">
             <span class="label">Phone Number</span>
             <span class="data">${guest.getPhoneNumber()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Home Number</span>
+            <span class="data">${guest.getHomeNumber()}</span>
         </div>
 
     </div>
@@ -87,6 +99,10 @@
 </div>
 </body>
 <script>
+    <%--if ('USER' == ${sessionEmployee.getAccessLevel()}){--%>
+    <%--    docme--%>
+    <%--}--%>
+
     let modal = document.getElementById("modal-delete");
     function openModal(guest) {
         modal.style.display = "flex";

@@ -27,12 +27,16 @@ CREATE TABLE `checks` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `guest` (
+                         `login` varchar(255) DEFAULT NULL,
+                         `password` varchar(255) DEFAULT NULL,
                          `id` int(11) NOT NULL,
                          `birthDate` date DEFAULT NULL,
+                         `documentType` varchar(255) DEFAULT NULL,
                          `document` varchar(255) DEFAULT NULL,
                          `email` varchar(255) DEFAULT NULL,
                          `name` varchar(255) DEFAULT NULL,
-                         `phoneNumber` varchar(255) DEFAULT NULL
+                         `phoneNumber` varchar(255) DEFAULT NULL,
+                         `homeNumber` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `payment` (

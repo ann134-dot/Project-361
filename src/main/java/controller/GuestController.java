@@ -2,6 +2,7 @@ package controller;
 
 import model.AccessLevel;
 import model.Booking;
+import model.Employee;
 import model.Guest;
 
 import javax.servlet.ServletException;
@@ -21,7 +22,11 @@ public class GuestController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if(!Servlet.isLogged(req)){
-            resp.sendRedirect("/auth/login");
+            if(Servlet.getOperation(req) == 4) {
+                req.getRequestDispatcher("/WEB-INF/guest/form.jsp").forward(req, resp);
+            } else {
+                resp.sendRedirect("/auth/login");
+            }
         }else{
             Integer operation = Servlet.getOperation(req);
             if(operation == 1){
@@ -52,6 +57,8 @@ public class GuestController extends HttpServlet {
         if(operation == 1){
             Guest guest = new Guest(req);
             guest = guest.save();
+            Employee employee = new Employee(guest.getName(), "noSurName", guest.getEmail(),  "noAdress", "none", 0, AccessLevel.USER, guest.getLogin(), guest.getPassword(), guest.getId());
+            employee.save();
             resp.sendRedirect("/guests/" + guest.getId());
         }else {
             req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);

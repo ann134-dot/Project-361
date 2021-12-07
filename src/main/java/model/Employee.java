@@ -25,10 +25,11 @@ public class Employee{
     private AccessLevel accessLevel;
     private String login;
     private String password;
+    private Integer guestId;
     private static GenericDAO DAO = new GenericDAO(Employee.class);
 
     public Employee(String name, String surname,  String email, String address, String shift,
-                    int salary, AccessLevel accessLevel, String login, String password) {
+                    int salary, AccessLevel accessLevel, String login, String password, Integer guestId) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -38,6 +39,7 @@ public class Employee{
         this.accessLevel = accessLevel;
         this.login = login;
         this.password = password;
+        this.guestId = guestId;
     }
 
     public Employee() {
@@ -91,9 +93,12 @@ public class Employee{
         }else{
             this.password = request.getParameter("password");
         }
+        this.guestId = 0;
     }
 
     public Employee(String[] data){
+
+        this.guestId = 0;
         for(String x : data){
             String[] add = x.split("=");
             if(add.length == 1){
@@ -137,6 +142,11 @@ public class Employee{
         this.id = id;
         return this;
     }
+
+    public Integer getGuestId() {
+        return guestId;
+    }
+
 
     public String getName() {
         return name;
@@ -253,7 +263,7 @@ public class Employee{
         params.put("password", request.getParameter("password"));
 
         if(Employee.findAll().isEmpty()){
-            Employee employee = new Employee("", "", "", "", "",0,AccessLevel.MANAGER, "admin", "admin");
+            Employee employee = new Employee("", "", "", "", "",0,AccessLevel.MANAGER, "admin", "admin",0);
             employee.save();
         }
 

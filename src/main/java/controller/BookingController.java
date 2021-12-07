@@ -25,7 +25,7 @@ public class BookingController extends HttpServlet {
         }else{
             Integer operation = Servlet.getOperation(req);
             if(operation == 1){
-                List<Booking> bookingList = Booking.findAll();
+                List<Booking>   bookingList = Booking.findAll();
                 req.setAttribute("bookingList", bookingList);
                 req.getRequestDispatcher("/WEB-INF/booking/findAll.jsp").forward(req, resp);
             }else if(operation == 2){
