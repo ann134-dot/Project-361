@@ -23,8 +23,10 @@
     </div>
 
     <div class="edit">
-        <button class="delete" onclick="openModal('${guest.getName()}')">Delete</button>
-        <button onclick="window.location.href='/guests/${guest.getId()}/edit';">Edit</button>
+<c:if test="${sessionEmployee.getAccessLevel()}' !== 'USER'">
+        <button class="delete" onclick="openModal('${guest.getName()}')" >Delete</button>
+        <button onclick="window.location.href='/guests/${guest.getId()}/edit';" >Edit</button>
+</c:if>
     </div>
     <div class="about">
         <h2>About</h2>
@@ -99,9 +101,6 @@
 </div>
 </body>
 <script>
-    <%--if ('USER' == ${sessionEmployee.getAccessLevel()}){--%>
-    <%--    docme--%>
-    <%--}--%>
 
     let modal = document.getElementById("modal-delete");
     function openModal(guest) {

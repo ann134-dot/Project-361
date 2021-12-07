@@ -30,6 +30,9 @@ public class GuestController extends HttpServlet {
         }else{
             Integer operation = Servlet.getOperation(req);
             if(operation == 1){
+                if(Servlet.isUser(req) ){
+                    req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
+                }
                 List<Guest> guestList = Guest.findAll();
                 req.setAttribute("guestList", guestList);
                 req.getRequestDispatcher("/WEB-INF/guest/findAll.jsp").forward(req, resp);
@@ -40,10 +43,16 @@ public class GuestController extends HttpServlet {
                 req.setAttribute("guest", guest);
                 req.getRequestDispatcher("/WEB-INF/guest/find.jsp").forward(req, resp);
             }else if(operation == 3){
+                if(Servlet.isUser(req) ){
+                    req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
+                }
                 Guest guest = Guest.find(Servlet.getId(req));
                 req.setAttribute("guest", guest);
                 req.getRequestDispatcher("/WEB-INF/guest/form.jsp").forward(req, resp);
             }else if(operation == 4){
+                if(Servlet.isUser(req) ){
+                    req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
+                }
                 req.getRequestDispatcher("/WEB-INF/guest/form.jsp").forward(req, resp);
             }else {
                 req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);

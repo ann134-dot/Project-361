@@ -25,6 +25,9 @@ public class BookingController extends HttpServlet {
         }else{
             Integer operation = Servlet.getOperation(req);
             if(operation == 1){
+                if(Servlet.isUser(req) ){
+                    req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
+                }
                 List<Booking>   bookingList = Booking.findAll();
                 req.setAttribute("bookingList", bookingList);
                 req.getRequestDispatcher("/WEB-INF/booking/findAll.jsp").forward(req, resp);
@@ -46,6 +49,9 @@ public class BookingController extends HttpServlet {
                 }
                 req.getRequestDispatcher("/WEB-INF/booking/find.jsp").forward(req, resp);
             }else if(operation == 3){
+                if(Servlet.isUser(req) ){
+                    req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
+                }
                 Booking booking = Booking.find(Servlet.getId(req));
                 req.setAttribute("booking", booking);
                 req.setAttribute("roomList", Room.findAll());
@@ -53,6 +59,9 @@ public class BookingController extends HttpServlet {
                 req.setAttribute("roomTypeList", RoomType.findAll());
                 req.getRequestDispatcher("/WEB-INF/booking/form.jsp").forward(req, resp);
             }else if(operation == 4){
+                if(Servlet.isUser(req) ){
+                    req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
+                }
                 req.setAttribute("roomList", Room.findAll());
                 req.setAttribute("guestList", Guest.findAll());
                 req.setAttribute("roomTypeList", RoomType.findAll());
