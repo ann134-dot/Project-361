@@ -52,7 +52,7 @@
                 <label for="room_number">Room</label>
                 <input type="text" name="room_number" id="room_number" readonly>
                 <input type="number" name="status" id="status" style="display: none">
-                <input type="number" style="display: none" name="id_staff" id="id_staff" value="${sessionEmployee.getId()}">
+                <input type="number" style="display: none" name="id_employee" id="id_employee" value="${sessionEmployee.getId()}">
                 <div class="modal-footer">
                     <button onclick="cancel()" type="button">Cancel</button>
                     <input type="submit" value="Submit" id="button">

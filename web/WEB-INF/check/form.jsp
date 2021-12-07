@@ -11,11 +11,11 @@
     <h1><c:choose><c:when test="${check == null}">New</c:when><c:otherwise>Edit</c:otherwise></c:choose> Check</h1>
     <label for="check">Check</label>
     <input type="datetime-local" name="check" id="check" autocomplete="off" value="${check.getCheckTime()}">
-    <label for="id_staff">Staff</label>
-    <select name="id_staff" id="id_staff">
+    <label for="id_employee">Employee</label>
+    <select name="id_employee" id="id_employee">
         <option disabled selected value></option>
-        <c:forEach items="${employeeList}" var="staff">
-            <option value="${staff.getId()}" <c:if test="${staff.getId() == check.getStaff().getId()}"> selected </c:if>>${staff.getName()}</option>
+        <c:forEach items="${employeeList}" var="employee">
+            <option value="${employee.getId()}" <c:if test="${employee.getId() == check.getEmployee().getId()}"> selected </c:if>>${employee.getName()}</option>
         </c:forEach>
     </select>
     <label for="id_booking">Booking</label>
@@ -45,7 +45,7 @@
             },
             body: new URLSearchParams({
                 'check': document.getElementById("check").value,
-                'id_staff': document.getElementById("id_staff").value,
+                'id_employee': document.getElementById("id_employee").value,
                 'id_booking': document.getElementById("id_booking").value,
                 'status': document.getElementById("status").checked
             }),

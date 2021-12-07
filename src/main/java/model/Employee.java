@@ -219,8 +219,8 @@ public class Employee{
         return this;
     }
 
-    public static Employee save(Employee staff){
-        return (Employee) DAO.save(staff);
+    public static Employee save(Employee employee){
+        return (Employee) DAO.save(employee);
     }
 
     public static Employee find(Integer id){
@@ -231,8 +231,8 @@ public class Employee{
         return DAO.findAll();
     }
 
-    public static void update(Employee staff){
-        DAO.update(staff);
+    public static void update(Employee employee){
+        DAO.update(employee);
     }
 
     public static void delete(Integer id){
@@ -253,15 +253,15 @@ public class Employee{
         params.put("password", request.getParameter("password"));
 
         if(Employee.findAll().isEmpty()){
-            Employee staff = new Employee("", "", "", "", "",0,AccessLevel.MANAGER, "admin", "admin");
-            staff.save();
+            Employee employee = new Employee("", "", "", "", "",0,AccessLevel.MANAGER, "admin", "admin");
+            employee.save();
         }
 
-        Employee staff = (Employee) DAO.executeNamedQuery("authenticate",params);
+        Employee employee = (Employee) DAO.executeNamedQuery("authenticate",params);
 
-        if(staff != null) {
-            if (staff.id != null) {
-                request.getSession().setAttribute("sessionEmployee", staff);
+        if(employee != null) {
+            if (employee.id != null) {
+                request.getSession().setAttribute("sessionEmployee", employee);
                 return true;
             }
         }
