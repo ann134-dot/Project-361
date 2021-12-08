@@ -10,41 +10,30 @@
 <body>
 <c:import url="/WEB-INF/header/main.jsp"/>
 <div class="content">
-    <form action="/employee" id="form" <c:if test="${employee == null}">method="POST" </c:if> >
-        <h1><c:choose><c:when test="${employee == null}">New </c:when><c:otherwise>Edit </c:otherwise></c:choose>Employee</h1>
-        <label for="name">Name</label>
-<input type="text" name="name" id="name" autocomplete="off" autofocus="autofocus" required value="${employee.getName()}" required>
-
+    <form action="/employee" id="form">
+<%--        <c:if test="${employee == null}">method="POST" </c:if> > --%>
+<%--        <h1><c:choose><c:when test="${employee == null}">New </c:when><c:otherwise>Edit </c:otherwise></c:choose>Employee</h1>--%>
+    <h1>Edit Employee</h1>
+    <label for="name">Name</label>
+        <input type="text" name="name" id="name" autocomplete="off" autofocus="autofocus" required value="${employee.getName()}" readonly>
         <label for="surname">Surname</label>
-        <input type="text" name="surname" id="surname" autocomplete="off" autofocus="autofocus" required value="${employee.getSurname()}" required>
+        <input type="text" name="surname" id="surname" autocomplete="off" autofocus="autofocus" required value="${employee.getSurname()}" readonly>
         <label for="email">Email</label>
-        <input type="text" name="email" id="email" autocomplete="off" autofocus="autofocus" required value="${employee.getEmail()}" required>
+        <input type="text" name="email" id="email" autocomplete="off" autofocus="autofocus" required value="${employee.getEmail()}" readonly>
         <label for="address">Address</label>
-        <input type="text" name="address" id="address" autocomplete="off" autofocus="autofocus" required value="${employee.getAddress()}" required>
+        <input type="text" name="address" id="address" autocomplete="off" autofocus="autofocus" required value="${employee.getAddress()}" readonly>
         <label for="shift">Shift</label>
         <input type="text" name="shift" id="shift" autocomplete="off" autofocus="autofocus" required value="${employee.getShift()}" required>
         <label for="salary">Salary</label>
         <input type="number" min = "1" name="salary" id="salary" autocomplete="off" autofocus="autofocus" required value="${employee.getSalary()}" required>
         <label for="access_level">Access Level</label>
-        <select name="access_level" id="access_level" required>
-            <option disabled selected value></option>
-            <c:forEach items="${accessLevelList}" var="accessLevel">
-                <option value="${accessLevel}" <c:if test="${accessLevel == employee.getAccessLevel()}"> selected </c:if>>${accessLevel}</option>
-            </c:forEach>
-        </select>
+    <input type="text" name="access_level" id="access_level" autocomplete="off" autofocus="autofocus" required value="${employee.getAccessLevel()}" readonly>
         <label for="id_hotel">Hotel</label>
-        <select name="id_hotel" id="id_hotel" required>
-            <option disabled selected value></option>
-            <c:forEach items="${hotelList}" var="hotel">
-                <c:if test="${sessionEmployee.getHotel().getId() == hotel.getId()}"><option value="${hotel}" <c:if test="${hotel.getId() == employee.getHotel().getId()}"> selected </c:if>>${hotel.getName()}</option>
-                </c:if>
-            </c:forEach>
-        </select>
+    <input type="text" min = "1" name="id_hotel" id="id_hotel" autocomplete="off" autofocus="autofocus" required value="${employee.getHotel().getName()}" readonly>
         <label for="login">Login</label>
-        <input type="text" name="login" id="login" required autocomplete="off" value="${employee.getLogin()}" required>
+        <input type="text" name="login" id="login" required autocomplete="off" value="${employee.getLogin()}" readonly>
         <label for="password">Password</label>
-        <input type="password" required name="password" id="password" autocomplete="off" value="${employee.getPassword()}" required>
-
+        <input type="password" required name="password" id="password" autocomplete="off" value="${employee.getPassword()}" readonly>
         <div class="submit">
             <button onclick="window.history.go(-1);" type="button">Cancel</button>
             <input type="submit" value="Submit" id="button">
@@ -73,7 +62,7 @@
                 'login': document.getElementById("login").value,
                 'guest_id': 0,
                 'password': document.getElementById("password").value,
-                'id_hotel': 1 //document.getElementById("id_hotel").value
+                'id_hotel': document.getElementById("id_hotel").value
             }),
         }).then(resp => {   window.location.href = url });
     }
