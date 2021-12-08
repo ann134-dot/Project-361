@@ -15,7 +15,9 @@
         <c:if test="${sessionEmployee.getAccessLevel() == 'USER'}">
             <c:import url="/WEB-INF/header/userOptions.jsp"/>
         </c:if>
-
+        <c:if test="${sessionEmployee.getAccessLevel() == 'CLEANER'}">
+            <c:import url="/WEB-INF/header/cleanerOptions.jsp"/>
+        </c:if>
 
     </nav>
     <div class="user">

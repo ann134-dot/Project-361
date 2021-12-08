@@ -24,13 +24,14 @@ public class Employee{
     @Enumerated(EnumType.STRING)
     private AccessLevel accessLevel;
     private String login;
+    private Integer guest_id;
     private String password;
     @OneToOne
     private Hotel hotel;
     private static GenericDAO DAO = new GenericDAO(Employee.class);
 
     public Employee(String name, String surname,  String email, String address, String shift,
-                    int salary, AccessLevel accessLevel, String login, String password, Hotel hotel) {
+                    int salary, AccessLevel accessLevel, String login, String password, Hotel hotel, Integer guest_id) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -41,6 +42,7 @@ public class Employee{
         this.login = login;
         this.password = password;
         this.hotel = hotel;
+        this.guest_id = guest_id;
     }
 
     public Employee() {
@@ -100,6 +102,12 @@ public class Employee{
         }else{
             this.hotel = Hotel.find(Integer.valueOf(request.getParameter("id_hotel")));
         }
+
+        if(request.getParameter("guest_id").isEmpty()){
+            this.guest_id = null;
+        }else{
+            this.guest_id =Integer.valueOf(request.getParameter("guest_id"));
+        }
     }
 
     public Employee(String[] data){
@@ -112,19 +120,19 @@ public class Employee{
                 this.name = add[1];
             }
             if(add[0].equals("surname")){
-                this.name = add[1];
+                this.surname = add[1];
             }
             if(add[0].equals("email")){
-                this.name = add[1];
+                this.email = add[1];
             }
             if(add[0].equals("address")){
-                this.name = add[1];
+                this.address = add[1];
             }
             if(add[0].equals("shift")){
-                this.name = add[1];
+                this.shift = add[1];
             }
             if(add[0].equals("salary")){
-                this.name = add[1];
+                this.salary = Integer.valueOf(add[1]);
             }
             if(add[0].equals("access_level")){
                 this.accessLevel = AccessLevel.valueOf(add[1]);
@@ -137,6 +145,9 @@ public class Employee{
             }
             if(add[0].equals("id_hotel")){
                 this.hotel = Hotel.find(Integer.valueOf(add[1]));
+            }
+            if(add[0].equals("guest_id")){
+                this.guest_id = Integer.valueOf(add[1]);
             }
         }
     }
@@ -240,6 +251,15 @@ public class Employee{
         return this;
     }
 
+    public Integer getGuestId() {
+        return guest_id;
+    }
+
+    public Employee setGuestId(Integer guest_id) {
+        this.guest_id= guest_id;
+        return this;
+    }
+
     public static Employee save(Employee employee){
         return (Employee) DAO.save(employee);
     }
@@ -274,7 +294,7 @@ public class Employee{
         params.put("password", request.getParameter("password"));
 
         if(Employee.findAll().isEmpty()){
-            Employee employee = new Employee("", "", "", "", "",0,AccessLevel.MANAGER, "admin", "admin", null);
+            Employee employee = new Employee("", "", "", "", "",0,AccessLevel.MANAGER, "admin", "admin", null, 0);
             employee.save();
         }
 

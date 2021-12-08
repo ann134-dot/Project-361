@@ -35,7 +35,7 @@
         <select name="id_hotel" id="id_hotel" required>
             <option disabled selected value></option>
             <c:forEach items="${hotelList}" var="hotel">
-                <c:if test="${sessionEmployee.getHotel().getId() == hotel.getId()}"><option value="${hotel.getId()}" <c:if test="${hotel.getId() == employee.getHotel().getId()}"> selected </c:if>>${hotel.getName()}</option>
+                <c:if test="${sessionEmployee.getHotel().getId() == hotel.getId()}"><option value="${hotel}" <c:if test="${hotel.getId() == employee.getHotel().getId()}"> selected </c:if>>${hotel.getName()}</option>
                 </c:if>
             </c:forEach>
         </select>
@@ -70,7 +70,9 @@
                 'salary': document.getElementById("salary").value,
                 'access_level': document.getElementById("access_level").value,
                 'login': document.getElementById("login").value,
-                'password': document.getElementById("password").value
+                'guest_id': 0,
+                'password': document.getElementById("password").value,
+                'id_hotel': document.getElementById("id_hotel").value
             }),
         }).then(resp => {   window.location.href = url });
     }

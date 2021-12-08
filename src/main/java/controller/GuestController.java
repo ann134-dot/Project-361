@@ -66,7 +66,7 @@ public class GuestController extends HttpServlet {
         if(operation == 1){
             Guest guest = new Guest(req);
             guest = guest.save();
-            Employee employee = new Employee(guest.getName(), "noSurName", guest.getEmail(),  "noAdress", "none", 0, AccessLevel.USER, guest.getLogin(), guest.getPassword(), guest.getId());
+            Employee employee = new Employee(guest.getName(), "noSurName", guest.getEmail(),  "noAdress", "none", 0, AccessLevel.USER, guest.getLogin(), guest.getPassword(), null,guest.getId());
             employee.save();
             resp.sendRedirect("/guests/" + guest.getId());
         }else {

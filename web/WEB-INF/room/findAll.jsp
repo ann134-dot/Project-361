@@ -10,7 +10,7 @@
 <body>
 <c:import url="/WEB-INF/header/main.jsp"/>
 <div class="content">
-    <h1>Rooms</h1>
+    <h1><c:if test="${sessionEmployee.getAccessLevel()=='CLEANER'}">Dirty </c:if>Rooms</h1>
     <div class="over">
         <table>
             <thead>
@@ -18,15 +18,24 @@
             </thead>
             <tbody>
                 <c:forEach items="${roomList}" var="room">
-                    <c:if test="${room.getClean()==0}">
-                    <tr onclick="window.location.href='/rooms/${room.getId()}';">
+                    <c:if test="${room.getClean()==0 && sessionEmployee.getAccessLevel()=='CLEANER'}">
+                    <tr>
                         <td>${room.getId()}</td>
                         <td>${room.getNumber()}</td>
                         <td>${room.getHotel().getName()}</td>
                         <td>${room.getRoomType().getName()}</td>
                         <td>${room.getAvailability()}</td>
+                        <td><button onclick="clean(${room.getId()},${room.getNumber()},${room.getHotel().getId()},${room.getRoomType().getId()})">Clean</button></td>
                     </tr>
-                    <button onclick="clean(${room.getId()},${room.getNumber()},${room.getHotel().getId()},${room.getRoomType().getId()})">Clean</button>
+                    </c:if>
+                    <c:if test="${sessionEmployee.getAccessLevel()!='CLEANER'}">
+                        <tr>
+                            <td>${room.getId()}</td>
+                            <td>${room.getNumber()}</td>
+                            <td>${room.getHotel().getName()}</td>
+                            <td>${room.getRoomType().getName()}</td>
+                            <td>${room.getAvailability()}</td>
+                        </tr>
                     </c:if>
                 </c:forEach>
             </tbody>

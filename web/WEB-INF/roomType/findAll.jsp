@@ -11,12 +11,12 @@
 <c:import url="/WEB-INF/header/main.jsp"/>
 <div class="content">
     <h1>Room Types</h1>
-    <div class="updateRoomType">
+    <%--<div class="updateRoomType">
         <label for="arrival">Arrival</label>
         <label for="departure">Departure</label>
         <input type="date" id="arrival" name="arrival">
         <input type="date" id="departure" name="departure">
-    </div>
+    </div>--%>
     <div class="over">
         <table>
             <thead>
