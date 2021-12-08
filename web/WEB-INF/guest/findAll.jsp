@@ -13,11 +13,11 @@
     <div class="over">
         <table>
             <thead>
-                <tr><th>Name</th><th>Document</th><th>Birth Date</th></tr>
+                <tr><th>Name</th><th>Surname</th><th>Address</th><th>Document</th><th>Birth Date</th></tr>
             </thead>
             <tbody>
                 <c:forEach items="${guestList}" var="guest">
-                    <tr onclick="window.location.href='/guests/${guest.getId()}';"><td>${guest.getName()}</td><td>${guest.getDocument()}</td><td>${guest.getBirthDate()}</td></tr>
+                    <tr onclick="window.location.href='/guests/${guest.getId()}';"><td>${guest.getName()}</td><td>${guest.getSurname()}</td><td>${guest.getAddress()}</td><td>${guest.getDocument()}</td><td>${guest.getBirthDate()}</td></tr>
                 </c:forEach>
             </tbody>
         </table>

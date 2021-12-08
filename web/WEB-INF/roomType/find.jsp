@@ -34,6 +34,14 @@
             <span class="data">${roomType.getName()}</span>
         </div>
         <div class="property">
+            <span class="label">Size</span>
+            <span class="data">${roomType.getSize()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Capacity</span>
+            <span class="data">${roomType.getCapacity()}</span>
+        </div>
+        <div class="property">
             <span class="label">Description</span>
             <span class="data">${roomType.getDescription()}</span>
         </div>

@@ -108,19 +108,19 @@ public class Employee{
                 this.name = add[1];
             }
             if(add[0].equals("surname")){
-                this.name = add[1];
+                this.surname = add[1];
             }
             if(add[0].equals("email")){
-                this.name = add[1];
+                this.email = add[1];
             }
             if(add[0].equals("address")){
-                this.name = add[1];
+                this.address = add[1];
             }
             if(add[0].equals("shift")){
-                this.name = add[1];
+                this.shift = add[1];
             }
             if(add[0].equals("salary")){
-                this.name = add[1];
+                this.salary = new Integer(add[1]);
             }
             if(add[0].equals("access_level")){
                 this.accessLevel = AccessLevel.valueOf(add[1]);

@@ -14,11 +14,11 @@
     <div class="over">
         <table>
             <thead>
-                <tr><th>ID</th><th>Number</th><th>Hotel</th><th>Room Type</th><th>Availability</th></tr>
+                <tr><th>ID</th><th>Number</th><th>Floor</th><th>Hotel</th><th>Room Type</th><th>Availability</th></tr>
             </thead>
             <tbody>
                 <c:forEach items="${roomList}" var="room">
-                    <tr onclick="window.location.href='/rooms/${room.getId()}';"><td>${room.getId()}</td><td>${room.getNumber()}</td><td>${room.getHotel().getName()}</td>><td>${room.getRoomType().getName()}</td><td>${room.getAvailability()}</td></tr>
+                    <tr onclick="window.location.href='/rooms/${room.getId()}';"><td>${room.getId()}</td><td>${room.getNumber()}</td><td>${room.getFloor()}</td><td>${room.getHotel().getName()}</td><td>${room.getRoomType().getName()}</td><td>${room.getAvailability()}</td></tr>
                 </c:forEach>
             </tbody>
         </table>

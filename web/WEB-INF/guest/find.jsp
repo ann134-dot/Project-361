@@ -47,6 +47,14 @@
             <span class="data">${guest.getName()}</span>
         </div>
         <div class="property">
+            <span class="label">Surname</span>
+            <span class="data">${guest.getSurname()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Address</span>
+            <span class="data">${guest.getAddress()}</span>
+        </div>
+        <div class="property">
             <span class="label">Document</span>
             <span class="data">${guest.getDocument()}</span>
         </div>

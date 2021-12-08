@@ -16,6 +16,12 @@
         <label for="name">Name</label>
         <input type="text" name="name" id="name" autocomplete="off" autofocus="autofocus"
                value="${roomType.getName()}" required>
+        <label for="size">Size</label>
+        <input type="text" name="size" id="size" autocomplete="off" autofocus="autofocus"
+               value="${roomType.getSize()}" required>
+        <label for="capacity">Capacity</label>
+        <input type="text" name="capacity" id="capacity" autocomplete="off" autofocus="autofocus"
+               value="${roomType.getCapacity()}" required>
         <label for="description">Description</label>
         <textarea name="description" id="description" cols="30" rows="5" required>${roomType.getDescription()}</textarea>
         <label for="daily_price">Daily Price</label>
@@ -48,6 +54,8 @@
             },
             body: new URLSearchParams({
                 'name': document.getElementById("name").value,
+                'size': document.getElementById("size").value,
+                'capacity': document.getElementById("capacity").value,
                 'id_hotel': document.getElementById("id_hotel").value,
                 'description': document.getElementById("description").value,
                 'daily_price': document.getElementById("daily_price").value,

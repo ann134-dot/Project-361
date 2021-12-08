@@ -11,9 +11,11 @@
 <c:import url="/WEB-INF/header/main.jsp"/>
 <div class="content">
     <form action="/employee" id="form" <c:if test="${employee == null}">method="POST" </c:if> >
-        <h1><c:choose><c:when test="${employee == null}">New</c:when><c:otherwise>Edit</c:otherwise></c:choose>Employee</h1>
+        <h1><c:choose><c:when test="${employee == null}">New </c:when><c:otherwise>Edit </c:otherwise></c:choose>Employee</h1>
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" autocomplete="off" autofocus="autofocus" required value="${employee.getName()}" required>
+<c:choose><c:when test="${employee == null}"><input type="text" name="name" id="name" autocomplete="off" autofocus="autofocus" required value="${employee.getName()}" required>
+</c:when><c:otherwise> <input type="text" name="name" id="name"  required value="${employee.getName()}" readonly></c:otherwise></c:choose>
+
         <label for="surname">Surname</label>
         <input type="text" name="surname" id="surname" autocomplete="off" autofocus="autofocus" required value="${employee.getSurname()}" required>
         <label for="email">Email</label>
@@ -21,9 +23,9 @@
         <label for="address">Address</label>
         <input type="text" name="address" id="address" autocomplete="off" autofocus="autofocus" required value="${employee.getAddress()}" required>
         <label for="shift">Shift</label>
-        <input type="text" name="shift" id="shift" autocomplete="off" autofocus="autofocus" required value="${employee.getName()}" required>
+        <input type="text" name="shift" id="shift" autocomplete="off" autofocus="autofocus" required value="${employee.getShift()}" required>
         <label for="salary">Salary</label>
-        <input type="number" min = "1" name="salary" id="salary" autocomplete="off" autofocus="autofocus" required value="${employee.getName()}" required>
+        <input type="number" min = "1" name="salary" id="salary" autocomplete="off" autofocus="autofocus" required value="${employee.getSalary()}" required>
         <label for="access_level">Access Level</label>
         <select name="access_level" id="access_level" required>
             <option disabled selected value></option>

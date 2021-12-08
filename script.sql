@@ -35,6 +35,8 @@ CREATE TABLE `guest` (
                          `document` varchar(255) DEFAULT NULL,
                          `email` varchar(255) DEFAULT NULL,
                          `name` varchar(255) DEFAULT NULL,
+                         `surname` varchar(255) DEFAULT NULL,
+                         `address` varchar(255) DEFAULT NULL,
                          `phoneNumber` varchar(255) DEFAULT NULL,
                          `homeNumber` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -51,6 +53,7 @@ CREATE TABLE `payment` (
 CREATE TABLE `room` (
                         `id` int(11) NOT NULL,
                         `number` int(11) DEFAULT NULL,
+                        'floor' int(11) DEFAULT  NULL,
                         `roomType_id` int(11) DEFAULT NULL,
                         `hotel_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -60,7 +63,9 @@ CREATE TABLE `roomtype` (
                             `hotel_id` int(11) NOT NULL,
                             `dailyPrice` decimal(19,2) DEFAULT NULL,
                             `description` varchar(255) DEFAULT NULL,
-                            `name` varchar(255) DEFAULT NULL
+                            `name` varchar(255) DEFAULT NULL,
+                            'size' float(11) DEFAULT NULL,
+                            'capacity' int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `employee` (
@@ -75,16 +80,6 @@ CREATE TABLE `employee` (
                          `login` varchar(255) DEFAULT NULL,
                          `password` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `schedule` (
-                            `id` int(11) NOT NULL,
-                            `schedule` varchar(255) DEFAULT NULL,
-                            `total` varchar(255) DEFAULT NULL,
-                            `working_hours` varchar(255) DEFAULT NULL,
-                            `payloads` varchar(255) DEFAULT NULL,
-
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 
 ALTER TABLE `booking`
     ADD PRIMARY KEY (`id`),
