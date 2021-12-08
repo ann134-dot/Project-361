@@ -185,6 +185,10 @@
             }).then(resp => resp.json())
                 .then(data => {
                     let dailyPrice = data.dailyPrice;
+                    let date  = new Date(document.getElementById("arrival").value);
+                    if (date.getDay() > 4 || date.getDay() == 0){
+                        dailyPrice = dailyPrice*2;
+                    }
                     let total = dailyPrice * (document.getElementById("departure").valueAsNumber - document.getElementById("arrival").valueAsNumber) / (1000 * 3600 * 24);
                     totalCalc = total+0.00;
                     document.getElementById("result").innerHTML = total.toFixed(2);

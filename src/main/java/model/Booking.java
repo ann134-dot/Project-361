@@ -93,9 +93,12 @@ public class Booking{
             this.departure = LocalDate.parse(request.getParameter("departure"));
         }
 
-
-        this.total = this.getRoom().getRoomType().getDailyPrice().multiply(new BigDecimal(Period.between(this.getArrival(), this.getDeparture()).getDays()));
-
+        BigDecimal days = new BigDecimal(Period.between(this.getArrival(), this.getDeparture()).getDays());
+        BigDecimal dailyPrice = this.getRoom().getRoomType().getDailyPrice();
+        if(this.getArrival().getDayOfWeek().getValue() > 4){
+            dailyPrice = dailyPrice.multiply(BigDecimal.valueOf(2));
+        }
+        this.total = dailyPrice.multiply(days);
 
         if(request.getParameter("id_employee").isEmpty()){
             this.employee = null;
