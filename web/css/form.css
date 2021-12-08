@@ -76,7 +76,7 @@ nav a:hover{
 
 
 .content{
-    height: 90vh;
+    height: max-content;
     display: flex;
     justify-content: center;
     align-items: center;
