@@ -19,18 +19,33 @@
             <tbody>
                 <c:forEach items="${roomList}" var="room">
 
-                    <c:if test="${room.getClean()==0 && sessionEmployee.getAccessLevel()=='CLEANER'}">
-                    <tr>
-                        <td>${room.getId()}</td>
-                        <td>${room.getNumber()}</td>
-                        <td>${room.getFloor()}</td>
-                        <td>${room.getHotel().getName()}</td>
-                        <td>${room.getRoomType().getName()}</td>
-                        <td>${room.getAvailability()}</td>
-                        <td><button onclick="clean(${room.getId()},${room.getNumber()},${room.getFloor()},${room.getHotel().getId()},${room.getRoomType().getId()})">Clean</button></td>
-                    </tr>
+                    <c:if test = "${sessionEmployee.getAccessLevel()!='USER' && sessionEmployee.getHotel().getId() == room.getHotel().getId()}">
+
+                            <c:if test="${room.getClean()==0 && sessionEmployee.getAccessLevel()=='CLEANER'}">
+                            <tr>
+                                <td>${room.getId()}</td>
+                                <td>${room.getNumber()}</td>
+                                <td>${room.getFloor()}</td>
+                                <td>${room.getHotel().getName()}</td>
+                                <td>${room.getRoomType().getName()}</td>
+                                <td>${room.getAvailability()}</td>
+                                <td><button onclick="clean(${room.getId()},${room.getNumber()},${room.getFloor()},${room.getHotel().getId()},${room.getRoomType().getId()})">Clean</button></td>
+                            </tr>
+                            </c:if>
+
+                            <c:if test="${sessionEmployee.getAccessLevel()!='CLEANER'}">
+                                <tr>
+                                    <td>${room.getId()}</td>
+                                    <td>${room.getNumber()}</td>
+                                    <td>${room.getFloor()}</td>
+                                    <td>${room.getHotel().getName()}</td>
+                                    <td>${room.getRoomType().getName()}</td>
+                                    <td>${room.getAvailability()}</td>
+                                </tr>
+                            </c:if>
                     </c:if>
-                    <c:if test="${sessionEmployee.getAccessLevel()!='CLEANER'}">
+                    <c:if test = "${sessionEmployee.getAccessLevel() =='USER'}">
+
                         <tr>
                             <td>${room.getId()}</td>
                             <td>${room.getNumber()}</td>
@@ -40,6 +55,7 @@
                             <td>${room.getAvailability()}</td>
                         </tr>
                     </c:if>
+
                 </c:forEach>
             </tbody>
         </table>

@@ -22,15 +22,18 @@
     </nav>
 
     <c:choose>
-        <c:when test ="${sesssionEmployee == null}">
+        <c:when test ="${sessionEmployee.getAccessLevel() == 'EMPLOYEE' ||
+                        sessionEmployee.getAccessLevel() == 'MANAGER' ||
+                        sessionEmployee.getAccessLevel() == 'USER' ||
+                        sessionEmployee.getAccessLevel() == 'CLEANER' }">
             <div class="user">
-                <a href="/auth/login">Account Page</a>
+                <h2>${sessionEmployee.getName()}</h2>
+                <a href="/auth/logout">Logout</a>
             </div>
         </c:when>
         <c:otherwise>
             <div class="user">
-                <h2>${sessionEmployee.getName()}</h2>
-                <a href="/auth/logout">Logout</a>
+                <a href="/auth/login">Account Page</a>
             </div>
         </c:otherwise>
     </c:choose>
