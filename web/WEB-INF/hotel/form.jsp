@@ -11,6 +11,8 @@
 <body>
 <c:import url="/WEB-INF/header/main.jsp"/>
 <div class="content">
+
+
     <form action="/hotels" id="form" <c:if test="${hotel == null}">method="POST" </c:if> >
         <h1><c:choose><c:when test="${hotel == null}">New</c:when><c:otherwise>Edit</c:otherwise></c:choose> Hotel</h1>
         <label for="name">Name</label>

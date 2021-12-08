@@ -10,6 +10,12 @@
 <body>
 <c:import url="/WEB-INF/header/main.jsp"/>
 <div class="content">
+    <c:if test ="${sesssionEmployee == null}">
+        <h1>WELCOME TO TIP TOP HOTELS!</h1>
+        <img src="https://ecoculturebs.com/wp-content/uploads/2020/07/TipTop-300x175.png">
+        <p>"Where dreams become reality"</p>
+        <br><br><br>
+    </c:if>
     <h1>Hotels</h1>
     <div class="over">
         <table>
