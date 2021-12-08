@@ -24,7 +24,29 @@
             </thead>
             <tbody>
             <c:forEach items="${roomTypeList}" var="roomType">
-                <tr onclick="window.location.href='/roomTypes/${roomType.getId()}';"><td>${roomType.getHotel().getName()}</td><td>${roomType.getName()}</td><td>${roomType.getSize()}</td><td>${roomType.getCapacity()}</td><td>${roomType.getDescription()}</td><td>${roomType.getDailyPrice()}</td><td class="count"> - </td></tr>
+
+                <c:if test = "${sessionEmployee.getAccessLevel()!='USER' && sessionEmployee.getHotel().getId() == roomType.getHotel().getId()}">
+                    <tr onclick="window.location.href='/roomTypes/${roomType.getId()}';">
+                        <td>${roomType.getHotel().getName()}</td>
+                        <td>${roomType.getName()}</td>
+                        <td>${roomType.getSize()}</td>
+                        <td>${roomType.getCapacity()}</td>
+                        <td>${roomType.getDescription()}</td>
+                        <td>${roomType.getDailyPrice()}</td>
+                        <td class="count"> - </td>
+                    </tr>
+                </c:if>
+                <c:if test = "${sessionEmployee.getAccessLevel() =='USER'}">
+                    <tr onclick="window.location.href='/roomTypes/${roomType.getId()}';">
+                        <td>${roomType.getHotel().getName()}</td>
+                        <td>${roomType.getName()}</td>
+                        <td>${roomType.getSize()}</td>
+                        <td>${roomType.getCapacity()}</td>
+                        <td>${roomType.getDescription()}</td>
+                        <td>${roomType.getDailyPrice()}</td>
+                        <td class="count"> - </td>
+                    </tr>
+                </c:if>
             </c:forEach>
 
             </tbody>
