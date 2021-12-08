@@ -207,15 +207,5 @@ public class RoomType {
                 '}';
     }
 
-    public String toJSON(){
-        return "{" +
-                "\"id\":\"" + id + "\""+
-                ", \"hotel\":\"" + hotel +"\""+
-                ", \"name\":\"" + name +"\""+
-                ", \"size\":\"" + size +"\""+
-                ", \"capacity\":\"" + capacity +"\""+
-                ", \"description\":\"" + description +"\""+
-                ", \"dailyPrice\":\"" + dailyPrice + "\""+
-                "}";
-    }
+
 }

@@ -73,7 +73,7 @@
             <span class="data">$${booking.getTotal()}</span>
         </div>
     </div>
-
+<c:if test = "${sessionEmployee.getAccessLevel() != 'USER'}">
     <div class="payment">
         <div class="payment-info">
             <h2>Payments</h2>
@@ -225,6 +225,7 @@
                 <select name="payment_method" id="payment_method">
                     <option value="CASH">CASH</option>
                     <option value="CARD">CARD</option>
+                    <option value="KaspiQR">KaspiQR</option>
                 </select>
                 <label for="id_employee_payment" style="display: none">Employee</label>
                 <input type="text" style="display: none" name="id_employee_payment" id="id_employee_payment"
@@ -240,7 +241,7 @@
         </div>
     </div>
 </div>
-
+</c:if>
 </body>
 <script>
     if ('${sessionEmployee.getAccessLevel()}' == 'USER') {

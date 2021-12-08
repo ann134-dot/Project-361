@@ -21,7 +21,9 @@
             <select name="room_type" id="room_type"<c:if test="${booking == null}">disabled </c:if> required>
                 <c:if test="${booking == null}"><option disabled selected value></option></c:if>
                 <c:forEach items="${roomTypeList}" var="roomType">
+                    <c:if test = "${sessionEmployee.getAccessLevel() != 'USER' && sessionEmployee.getHotel().getId() == roomType.getHotel().getId()}">
                     <option value="${roomType.getId()}" <c:if test="${booking.getRoom().getRoomType().getId() == roomType.getId()}">selected</c:if>>${roomType.getName()}</option>
+                    </c:if>
                 </c:forEach>
             </select>
             <select name="id_room" id="id_room" <c:if test="${booking == null}">disabled </c:if> required>

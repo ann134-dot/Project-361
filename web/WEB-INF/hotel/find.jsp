@@ -35,7 +35,7 @@
         </div>
         <div class="property">
             <span class="label">Address</span>
-            <span class="data">$${hotel.getAddress()}</span>
+            <span class="data">${hotel.getAddress()}</span>
         </div>
 
     </div>

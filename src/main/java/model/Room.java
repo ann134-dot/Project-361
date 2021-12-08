@@ -203,12 +203,5 @@ public class Room {
                 '}';
     }
 
-    public String toJSON() {
-        return "{" +
-                "\"id\":\"" + id + "\"" +
-                ", \"hotel\":\"" + hotel + "\"" +
-                ", \"number\":\"" + number + "\"" +
-                ", \"floor\":\"" + floor + "\"" +
-                "}";
-    }
+
 }
