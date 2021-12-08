@@ -94,6 +94,6 @@ public class Servlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/auth/login");
+        resp.sendRedirect("/hotels");
     }
 }

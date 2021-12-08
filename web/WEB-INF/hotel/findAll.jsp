@@ -32,7 +32,6 @@
         </table>
     </div>
 
-    </table>
 </div>
 
 </body>
