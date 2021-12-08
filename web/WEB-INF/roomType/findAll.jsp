@@ -24,19 +24,13 @@
             </thead>
             <tbody>
             <c:forEach items="${roomTypeList}" var="roomType">
-                <tr onclick="window.location.href='/roomTypes/${roomType.getId()}';"><td>${roomType.getHotel().getName()}</td><td>${roomType.getName()}</td><td>${roomType.getSize()}</td><td>${roomType.getCapacity()}</td><td>${roomType.getDescription()}</td><td>$${roomType.getDailyPrice()}</td><td class="count"> - </td></tr>
+                <tr onclick="window.location.href='/roomTypes/${roomType.getId()}';"><td>${roomType.getHotel().getName()}</td><td>${roomType.getName()}</td><td>${roomType.getSize()}</td><td>${roomType.getCapacity()}</td><td>${roomType.getDescription()}</td><td>${roomType.getDailyPrice()}</td><td class="count"> - </td></tr>
             </c:forEach>
 
             </tbody>
         </table>
     </div>
 
-    </table>
-    <c:if test="${allowed == true}">
-    <div class="submit">
-        <button onclick="window.location.href='/roomTypes/new';">New Room Type</button>
-    </div>
-    </c:if>
 </div>
 
 </body>

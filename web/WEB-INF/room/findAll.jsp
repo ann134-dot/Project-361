@@ -10,7 +10,7 @@
 <body>
 <c:import url="/WEB-INF/header/main.jsp"/>
 <div class="content">
-    <h1>Rooms</h1>
+    <h1><c:if test="${sessionEmployee.getAccessLevel()=='CLEANER'}">Dirty </c:if>Rooms</h1>
     <div class="over">
         <table>
             <thead>
@@ -18,23 +18,56 @@
             </thead>
             <tbody>
                 <c:forEach items="${roomList}" var="room">
-                    <tr onclick="window.location.href='/rooms/${room.getId()}';"><td>${room.getId()}</td><td>${room.getNumber()}</td><td>${room.getFloor()}</td><td>${room.getHotel().getName()}</td><td>${room.getRoomType().getName()}</td><td>${room.getAvailability()}</td></tr>
+
+                    <c:if test="${room.getClean()==0 && sessionEmployee.getAccessLevel()=='CLEANER'}">
+                    <tr>
+                        <td>${room.getId()}</td>
+                        <td>${room.getNumber()}</td>
+                        <td>${room.getFloor()}</td>
+                        <td>${room.getHotel().getName()}</td>
+                        <td>${room.getRoomType().getName()}</td>
+                        <td>${room.getAvailability()}</td>
+                        <td><button onclick="clean(${room.getId()},${room.getNumber()},${room.getFloor()},${room.getHotel().getId()},${room.getRoomType().getId()})">Clean</button></td>
+                    </tr>
+                    </c:if>
+                    <c:if test="${sessionEmployee.getAccessLevel()!='CLEANER'}">
+                        <tr>
+                            <td>${room.getId()}</td>
+                            <td>${room.getNumber()}</td>
+                            <td>${room.getFloor()}</td>
+                            <td>${room.getHotel().getName()}</td>
+                            <td>${room.getRoomType().getName()}</td>
+                            <td>${room.getAvailability()}</td>
+                        </tr>
+                    </c:if>
                 </c:forEach>
             </tbody>
         </table>
     </div>
 
     </table>
-    <c:if test="${allowed == true}">
-    <div class="submit">
-        <button onclick="window.location.href='/rooms/new';">New Room</button>
-    </div>
-    </c:if>
 </div>
 
 </body>
 
 <script>
+    function clean(id, number, floor, hotel_id, roomType_id){
+        let url = "/rooms/"+id;
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                'number': number,
+                'id_hotel': hotel_id,
+                'floor' : floor,
+                'id_room_type': roomType_id,
+                'clean': 1,
+            }),
+        }).then(resp => {   window.location.href = "/rooms/" });
+    }
     function link(id) {
         console.log(id);
         let url = "/rooms/"+ id;

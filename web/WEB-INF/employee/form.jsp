@@ -13,8 +13,7 @@
     <form action="/employee" id="form" <c:if test="${employee == null}">method="POST" </c:if> >
         <h1><c:choose><c:when test="${employee == null}">New </c:when><c:otherwise>Edit </c:otherwise></c:choose>Employee</h1>
         <label for="name">Name</label>
-<c:choose><c:when test="${employee == null}"><input type="text" name="name" id="name" autocomplete="off" autofocus="autofocus" required value="${employee.getName()}" required>
-</c:when><c:otherwise> <input type="text" name="name" id="name"  required value="${employee.getName()}" readonly></c:otherwise></c:choose>
+<input type="text" name="name" id="name" autocomplete="off" autofocus="autofocus" required value="${employee.getName()}" required>
 
         <label for="surname">Surname</label>
         <input type="text" name="surname" id="surname" autocomplete="off" autofocus="autofocus" required value="${employee.getSurname()}" required>
@@ -32,6 +31,14 @@
             <c:forEach items="${accessLevelList}" var="accessLevel">
                 <c:if test = "${accessLevel != 'USER'}"> <option value="${accessLevel}" <c:if test="${accessLevel == employee.getAccessLevel()}"> selected </c:if>>${accessLevel}</option>
                 </c:if > </c:forEach>
+        </select>
+        <label for="id_hotel">Hotel</label>
+        <select name="id_hotel" id="id_hotel" required>
+            <option disabled selected value></option>
+            <c:forEach items="${hotelList}" var="hotel">
+                <c:if test="${sessionEmployee.getHotel().getId() == hotel.getId()}"><option value="${hotel}" <c:if test="${hotel.getId() == employee.getHotel().getId()}"> selected </c:if>>${hotel.getName()}</option>
+                </c:if>
+            </c:forEach>
         </select>
         <label for="login">Login</label>
         <input type="text" name="login" id="login" required autocomplete="off" value="${employee.getLogin()}" required>
@@ -64,7 +71,9 @@
                 'salary': document.getElementById("salary").value,
                 'access_level': document.getElementById("access_level").value,
                 'login': document.getElementById("login").value,
-                'password': document.getElementById("password").value
+                'guest_id': 0,
+                'password': document.getElementById("password").value,
+                'id_hotel': 1 //document.getElementById("id_hotel").value
             }),
         }).then(resp => {   window.location.href = url });
     }
