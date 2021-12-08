@@ -1,7 +1,6 @@
 package controller;
 
-import model.AccessLevel;
-import model.Employee;
+import model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,9 +35,11 @@ public class EmployeeController extends HttpServlet {
                 }else if (operation == 3){
                     Employee employee = Employee.find(Servlet.getId(req));
                     req.setAttribute("employee", employee);
+                    req.setAttribute("hotelList", Hotel.findAll());
                     req.setAttribute("accessLevelList", AccessLevel.values());
                     req.getRequestDispatcher("/WEB-INF/employee/form.jsp").forward(req, resp);
                 }else if(operation == 4){
+                    req.setAttribute("hotelList", Hotel.findAll());
                     req.setAttribute("accessLevelList", AccessLevel.values());
                     req.getRequestDispatcher("/WEB-INF/employee/form.jsp").forward(req, resp);
                 }else{

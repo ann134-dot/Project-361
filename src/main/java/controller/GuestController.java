@@ -1,9 +1,6 @@
 package controller;
 
-import model.AccessLevel;
-import model.Booking;
-import model.Employee;
-import model.Guest;
+import model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -66,7 +63,7 @@ public class GuestController extends HttpServlet {
         if(operation == 1){
             Guest guest = new Guest(req);
             guest = guest.save();
-            Employee employee = new Employee(guest.getName(), "noSurName", guest.getEmail(),  "noAdress", "none", 0, AccessLevel.USER, guest.getLogin(), guest.getPassword(), guest.getId());
+            Employee employee = new Employee(guest.getName(), "noSurName", guest.getEmail(),  "noAdress", "none", 0, AccessLevel.USER, guest.getLogin(), guest.getPassword(), Hotel.find(1), guest.getId());
             employee.save();
             resp.sendRedirect("/guests/" + guest.getId());
         }else {

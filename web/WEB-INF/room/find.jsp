@@ -15,7 +15,7 @@
     </div>
     <c:if test="${allowed == true}">
     <div class="edit">
-        <button class="delete" onclick="openModal(${room.getNumber()})">Delete</button>
+        <%--<button class="delete" onclick="openModal(${room.getNumber()})">Delete</button>--%>
         <button onclick="window.location.href='/rooms/${room.getId()}/edit';">Edit</button>
     </div>
     </c:if>
@@ -28,6 +28,10 @@
         <div class="property">
             <span class="label">Number</span>
             <span class="data">${room.getNumber()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Floor</span>
+            <span class="data">${room.getFloor()}</span>
         </div>
         <div class="property link" onclick="window.location.href='/hotels/${room.getHotel().getId()}';">
             <span class="label">Hotel</span>

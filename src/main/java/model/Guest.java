@@ -17,6 +17,8 @@ public class Guest{
     private String login;
     private String password;
     private String name;
+    private String surname;
+    private String address;
     private String documentType;
     private String document;
     private LocalDate birthDate;
@@ -25,10 +27,12 @@ public class Guest{
     private String homeNumber;
     private static GenericDAO DAO = new GenericDAO(Guest.class);
 
-    public Guest(String login, String password, String name, String documentType, String document, LocalDate birthDate, String email, String phoneNumber, String homeNumber) {
+    public Guest(String login, String password, String name, String surname, String address, String documentType, String document, LocalDate birthDate, String email, String phoneNumber, String homeNumber) {
         this.login = login;
         this.password = password;
         this.name = name;
+        this.surname = surname;
+        this.address = address;
         this.documentType = documentType;
         this.document = document;
         this.birthDate = birthDate;
@@ -53,6 +57,12 @@ public class Guest{
                 this.password = add[1];
             }
             if(add[0].equals("name")){
+                this.name = add[1];
+            }
+            if(add[0].equals("surname")){
+                this.name = add[1];
+            }
+            if(add[0].equals("address")){
                 this.name = add[1];
             }
             if(add[0].equals("documentType")){
@@ -93,6 +103,16 @@ public class Guest{
             this.name = null;
         }else {
             this.name = request.getParameter("name");
+        }
+        if(request.getParameter("surname").isEmpty()){
+            this.surname = null;
+        }else {
+            this.surname = request.getParameter("surname");
+        }
+        if(request.getParameter("address").isEmpty()){
+            this.address = null;
+        }else {
+            this.address = request.getParameter("address");
         }
 
         if(request.getParameter("document_type").isEmpty()){
@@ -166,6 +186,22 @@ public class Guest{
 
     public Guest setName(String name) {
         this.name = name;
+        return this;
+    }
+    public String getSurname() {
+        return surname;
+    }
+
+    public Guest setSurname(String surname) {
+        this.surname = surname;
+        return this;
+    }
+    public String getAddress() {
+        return address;
+    }
+
+    public Guest setAddress(String address) {
+        this.address = address;
         return this;
     }
 
@@ -258,6 +294,8 @@ public class Guest{
                 ", password='" + password + '\'' +
                 ", id=" + id +
                 ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", address'" + address + '\'' +
                 ", documentType='" + documentType + '\'' +
                 ", document='" + document + '\'' +
                 ", birthDate=" + birthDate +

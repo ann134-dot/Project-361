@@ -29,20 +29,20 @@
     <div class="about">
         <h2>About</h2>
         <div class="property">
-            <span class="label">Login</span>
-            <span class="data">${guest.getLogin()}</span>
-        </div>
-        <div class="property">
-            <span class="label">Password</span>
-            <span class="data">${guest.getPassword()}</span>
-        </div>
-        <div class="property">
             <span class="label">ID</span>
             <span class="data">${guest.getId()}</span>
         </div>
         <div class="property">
             <span class="label">Name</span>
             <span class="data">${guest.getName()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Surname</span>
+            <span class="data">${guest.getSurname()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Address</span>
+            <span class="data">${guest.getAddress()}</span>
         </div>
         <div class="property">
             <span class="label">Document</span>

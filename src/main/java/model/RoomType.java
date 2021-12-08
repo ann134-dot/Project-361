@@ -16,13 +16,17 @@ public class RoomType {
     @ManyToOne
     private Hotel hotel;
     private String name;
+    private Float size;
+    private Integer capacity;
     private String description;
     private BigDecimal dailyPrice;
     private static GenericDAO DAO = new GenericDAO(RoomType.class);
 
-    public RoomType(Hotel hotel, String name, String description, BigDecimal dailyPrice) {
+    public RoomType(Hotel hotel, String name, Float size, Integer capacity, String description, BigDecimal dailyPrice) {
         this.hotel = hotel;
         this.name = name;
+        this.size = size;
+        this.capacity = capacity;
         this.description = description;
         this.dailyPrice = dailyPrice;
     }
@@ -41,6 +45,12 @@ public class RoomType {
             }
             if(add[0].equals("name")){
                 this.name = add[1];
+            }
+            if(add[0].equals("size")){
+                this.size = new Float(add[1]);
+            }
+            if(add[0].equals("capacity")){
+                this.capacity = new Integer(add[1]);
             }
             if(add[0].equals("description")){
                 this.description = add[1].replaceAll("[\\n\\t]", "");
@@ -64,6 +74,18 @@ public class RoomType {
             this.name = null;
         }else{
             this.name = request.getParameter("name");
+        }
+
+        if(request.getParameter("size").isEmpty()){
+            this.size = null;
+        }else{
+            this.size = new Float(request.getParameter("size"));
+        }
+
+        if(request.getParameter("capacity").isEmpty()){
+            this.capacity = null;
+        }else{
+            this.capacity = new Integer(request.getParameter("capacity"));
         }
 
         if(request.getParameter("description").isEmpty()){
@@ -103,6 +125,22 @@ public class RoomType {
 
     public RoomType setName(String name) {
         this.name = name;
+        return this;
+    }
+    public float getSize() {
+        return size;
+    }
+
+    public RoomType setSize(float size) {
+        this.size = size;
+        return this;
+    }
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public RoomType setCapacity(Integer capacity) {
+        this.capacity = capacity;
         return this;
     }
 
@@ -162,6 +200,8 @@ public class RoomType {
                 "id=" + id +
                 ", hotel='" + hotel + '\'' +
                 ", name='" + name + '\'' +
+                ", size='" + size + '\'' +
+                ", capacity='" + capacity + '\'' +
                 ", description='" + description + '\'' +
                 ", dailyPrice=" + dailyPrice +
                 '}';
@@ -172,6 +212,8 @@ public class RoomType {
                 "\"id\":\"" + id + "\""+
                 ", \"hotel\":\"" + hotel +"\""+
                 ", \"name\":\"" + name +"\""+
+                ", \"size\":\"" + size +"\""+
+                ", \"capacity\":\"" + capacity +"\""+
                 ", \"description\":\"" + description +"\""+
                 ", \"dailyPrice\":\"" + dailyPrice + "\""+
                 "}";

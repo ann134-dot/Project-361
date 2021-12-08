@@ -13,12 +13,12 @@
     <div class="model">
         <h1>Room Type</h1>
     </div>
-    <c:if test="${allowed == true}">
+    <%--<c:if test="${allowed == true}">
     <div class="edit">
         <button class="delete" onclick="openModal('${roomType.getName()}')">Delete</button>
         <button onclick="window.location.href='/roomTypes/${roomType.getId()}/edit';">Edit</button>
     </div>
-    </c:if>
+    </c:if>--%>
     <div class="about">
         <h2>About</h2>
         <div class="property">
@@ -32,6 +32,14 @@
         <div class="property">
             <span class="label">Name</span>
             <span class="data">${roomType.getName()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Size</span>
+            <span class="data">${roomType.getSize()}</span>
+        </div>
+        <div class="property">
+            <span class="label">Capacity</span>
+            <span class="data">${roomType.getCapacity()}</span>
         </div>
         <div class="property">
             <span class="label">Description</span>

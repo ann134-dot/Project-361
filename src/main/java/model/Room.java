@@ -17,12 +17,19 @@ public class Room {
     @ManyToOne
     private Hotel hotel;
     private Integer number;
+    private Integer floor;
+    private Integer clean;
     private static GenericDAO DAO = new GenericDAO(Room.class);
 
-    public Room(RoomType roomType, Hotel hotel, Integer number) {
+
+
+    public Room(RoomType roomType, Integer floor, Hotel hotel, Integer number, Integer clean) {
         this.roomType = roomType;
         this.hotel = hotel;
         this.number = number;
+        this.floor = floor;
+        this.clean = clean;
+
     }
 
     public Room() {
@@ -43,6 +50,13 @@ public class Room {
             if (add[0].equals("number")) {
                 this.number = Integer.valueOf(add[1]);
             }
+            if (add[0].equals("floor")) {
+                this.floor = Integer.valueOf(add[1]);
+            }
+            if (add[0].equals("clean")) {
+                this.clean = Integer.valueOf(add[1]);
+
+            }
         }
     }
 
@@ -61,6 +75,16 @@ public class Room {
             this.number = null;
         } else {
             this.number = Integer.valueOf(request.getParameter("number"));
+        }
+        if (request.getParameter("floor").isEmpty()) {
+            this.floor = null;
+        } else {
+            this.floor = Integer.valueOf(request.getParameter("floor"));
+        }
+        if (request.getParameter("clean").isEmpty()) {
+            this.clean = null;
+        } else {
+            this.clean = Integer.valueOf(request.getParameter("clean"));
         }
     }
 
@@ -115,6 +139,23 @@ public class Room {
         return this;
     }
 
+    public Integer getFloor() {
+        return floor;
+    }
+
+    public Room setFloor(Integer floor) {
+        this.floor = floor;
+        return this;
+    }
+
+    public Integer getClean() {
+        return clean;
+    }
+
+    public Room setClean(Integer clean) {
+        this.clean = clean;
+        return this;
+    }
     public static Room save(Room room) {
         return (Room) DAO.save(room);
     }
@@ -158,6 +199,7 @@ public class Room {
                 ", roomType=" + roomType +
                 ", hotel=" + hotel +
                 ", number=" + number +
+                ", floor =" + floor+
                 '}';
     }
 
@@ -166,6 +208,7 @@ public class Room {
                 "\"id\":\"" + id + "\"" +
                 ", \"hotel\":\"" + hotel + "\"" +
                 ", \"number\":\"" + number + "\"" +
+                ", \"floor\":\"" + floor + "\"" +
                 "}";
     }
 }

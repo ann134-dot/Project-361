@@ -16,7 +16,9 @@
     <c:if test="${sessionEmployee.getAccessLevel() == 'USER'}">
         <c:set var="css" value="/css/dash.css" />
     </c:if>
-
+    <c:if test="${sessionEmployee.getAccessLevel() == 'CLEANER'}">
+        <c:set var="css" value="/css/dash.css" />
+    </c:if>
 
     <link rel="stylesheet" type="text/css" href="${css}">
 </head>
