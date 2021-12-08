@@ -18,8 +18,8 @@
             </thead>
             <tbody>
             <c:forEach items="${employeeList}" var="employee">
-                <c:if test = "${employee.getAccessLevel() != 'USER'}"> <tr onclick="window.location.href='/employee/${employee.getId()}';"><td>${employee.getName()}</td><td>${employee.getSurname()}</td><td>${employee.getEmail()}</td><td>${employee.getAddress()}</td><td>${employee.getShift()}</td><td>${employee.getSalary()}</td><td>${employee.getAccessLevel()}</td><td>${employee.getLogin()}</td></tr>
-                </c:if> </c:forEach>
+                <tr onclick="window.location.href='/employee/${employee.getId()}';"><td>${employee.getName()}</td><td>${employee.getSurname()}</td><td>${employee.getEmail()}</td><td>${employee.getAddress()}</td><td>${employee.getShift()}</td><td>${employee.getSalary()}</td><td>${employee.getAccessLevel()}</td><td>${employee.getLogin()}</td></tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>

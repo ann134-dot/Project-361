@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.HashMap;
@@ -92,7 +93,9 @@ public class Booking{
             this.departure = LocalDate.parse(request.getParameter("departure"));
         }
 
+
         this.total = this.getRoom().getRoomType().getDailyPrice().multiply(new BigDecimal(Period.between(this.getArrival(), this.getDeparture()).getDays()));
+
 
         if(request.getParameter("id_employee").isEmpty()){
             this.employee = null;

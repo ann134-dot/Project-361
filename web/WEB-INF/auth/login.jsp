@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=0">
     <link rel="stylesheet" href="../css/form.css">
+    <link rel="stylesheet" type="text/css" href="../css/find.css">
     <title>Login</title>
 </head>
 <body>
+
 <form method="POST" action="/auth/login" id="form-login">
     <h1>Login</h1>
     <span id="error">${errorMessage}</span>
@@ -20,6 +22,9 @@
     </div>
     <div class="submit">
         <a href="/guests/new" >Registration</a>
+    </div>
+    <div class="submit">
+        <a href="/hotels" >Hotels</a>
     </div>
 </form>
 

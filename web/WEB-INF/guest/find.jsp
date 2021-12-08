@@ -23,10 +23,8 @@
     </div>
 
     <div class="edit">
-<c:if test="${sessionEmployee.getAccessLevel()}' !== 'USER'">
-        <button class="delete" onclick="openModal('${guest.getName()}')" >Delete</button>
-        <button onclick="window.location.href='/guests/${guest.getId()}/edit';" >Edit</button>
-</c:if>
+        <button class="delete" onclick="openModal('${guest.getName()}')" id = "deleteButton">Delete</button>
+        <button onclick="window.location.href='/guests/${guest.getId()}/edit';" id = "editButton">Edit</button>
     </div>
     <div class="about">
         <h2>About</h2>
@@ -101,6 +99,10 @@
 </div>
 </body>
 <script>
+    if ('${sessionEmployee.getAccessLevel()}' == 'USER') {
+        document.getElementById("deleteButton").outerHTML = "";
+        document.getElementById("editButton").outerHTML = "";
+    }
 
     let modal = document.getElementById("modal-delete");
     function openModal(guest) {

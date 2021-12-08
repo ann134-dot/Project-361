@@ -76,15 +76,6 @@ CREATE TABLE `employee` (
                          `password` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE `schedule` (
-                            `id` int(11) NOT NULL,
-                            `schedule` varchar(255) DEFAULT NULL,
-                            `total` varchar(255) DEFAULT NULL,
-                            `working_hours` varchar(255) DEFAULT NULL,
-                            `payloads` varchar(255) DEFAULT NULL,
-
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 
 ALTER TABLE `booking`
     ADD PRIMARY KEY (`id`),

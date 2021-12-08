@@ -42,12 +42,9 @@
 
     <div class="edit">
 
-<c:if test="${sessionEmployee.getAccessLevel()}' !== 'USER'">
-<c:if test="${allowed == true}">
-        <button class="delete" onclick="openModalDelete(${booking.getId()})">Delete</button>
-</c:if>
-        <button onclick="window.location.href='/bookings/${booking.getId()}/edit';">Edit</button>
-</c:if>
+
+        <button class="delete" onclick="openModalDelete(${booking.getId()})" id = "deleteButton">Delete</button>
+        <button onclick="window.location.href='/bookings/${booking.getId()}/edit';" id = "editButton">Edit</button>
     </div>
     <div class="about">
         <h2>About</h2>
@@ -246,7 +243,10 @@
 
 </body>
 <script>
-
+    if ('${sessionEmployee.getAccessLevel()}' == 'USER') {
+        document.getElementById("deleteButton").outerHTML = "";
+        document.getElementById("editButton").outerHTML = "";
+    }
 
     function deleteCheckButton(t, test, info){
         if(test == true){

@@ -19,15 +19,14 @@ import java.util.List;
 public class HotelController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(!Servlet.isLogged(req)){
-            resp.sendRedirect("/auth/login");
-        }else{
-
+//        if(!Servlet.isLogged(req)){
+//            resp.sendRedirect("/auth/login");
+//        }else{
             Integer operation = Servlet.getOperation(req);
             if(operation == 1) {
                 List<Hotel> hotelList = Hotel.findAll();
                 req.setAttribute("hotelList", hotelList);
-                req.setAttribute("allowed", Servlet.isAllowed(req, AccessLevel.MANAGER));
+//                req.setAttribute("allowed", Servlet.isAllowed(req, AccessLevel.MANAGER));
                 req.getRequestDispatcher("/WEB-INF/hotel/findAll.jsp").forward(req, resp);
             }else if(operation == 2){
                 Hotel hotel = Hotel.find(Servlet.getId(req));
@@ -52,7 +51,7 @@ public class HotelController extends HttpServlet {
             }else {
                 req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
             }
-        }
+//        }
     }
 
     @Override

@@ -28,8 +28,8 @@
         <select name="access_level" id="access_level" required>
             <option disabled selected value></option>
             <c:forEach items="${accessLevelList}" var="accessLevel">
-                <c:if test = "${accessLevel != 'USER'}"> <option value="${accessLevel}" <c:if test="${accessLevel == employee.getAccessLevel()}"> selected </c:if>>${accessLevel}</option>
-                </c:if > </c:forEach>
+                <option value="${accessLevel}" <c:if test="${accessLevel == employee.getAccessLevel()}"> selected </c:if>>${accessLevel}</option>
+            </c:forEach>
         </select>
         <label for="login">Login</label>
         <input type="text" name="login" id="login" required autocomplete="off" value="${employee.getLogin()}" required>
@@ -72,6 +72,5 @@
     }
 
 </script>
-
 </html>
 
