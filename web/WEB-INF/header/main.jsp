@@ -1,11 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header>
-
-    <div class="logo" onclick="window.location.href='/dashboard';">
-        <img style = "width:50%; height:50%" src="https://ecoculturebs.com/wp-content/uploads/2020/07/TipTop-300x175.png">
+    <head><link rel="stylesheet" type="text/css" href="/css/header.css"></head>
+    <div id="navbar">
+    <div class="logo-image" onclick="window.location.href='/dashboard';">
+        <img img src="../img/TipTop.png">
     </div>
-    <nav>
+    <ul>
 
         <c:if test="${sessionEmployee.getAccessLevel() == 'EMPLOYEE'}">
             <c:import url="/WEB-INF/header/employeeOptions.jsp"/>
@@ -19,24 +20,24 @@
         <c:if test="${sessionEmployee.getAccessLevel() == 'CLEANER'}">
             <c:import url="/WEB-INF/header/cleanerOptions.jsp"/>
         </c:if>
-    </nav>
+
 
     <c:choose>
         <c:when test ="${sessionEmployee.getAccessLevel() == 'EMPLOYEE' ||
                         sessionEmployee.getAccessLevel() == 'MANAGER' ||
                         sessionEmployee.getAccessLevel() == 'USER' ||
                         sessionEmployee.getAccessLevel() == 'CLEANER' }">
-            <div class="user">
+            <li>
                 <h2>${sessionEmployee.getName()}</h2>
                 <a href="/auth/logout">Logout</a>
-            </div>
+            </li>
         </c:when>
         <c:otherwise>
             <div class="user">
-                <a href="/auth/login">Account Page</a>
+               <li> <a href="/auth/login">Account Page</a> </li>
             </div>
         </c:otherwise>
     </c:choose>
-
-
+    </ul>
+</div>
 </header>

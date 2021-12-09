@@ -1,1 +1,1 @@
-<a href="/rooms/">Rooms</a>
+<li><a href="/rooms/">Rooms</a></li>
