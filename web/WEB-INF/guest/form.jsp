@@ -241,7 +241,7 @@
                     <div class="row row-space">
                         <button class="btn btn--radius-2 btn--blue" type="submit" value="Submit">Submit</button>
 
-                        <button class="btn btn--radius-2 btn--blue" onclick="window.history.go(-1);" type="submit">
+                        <button class="btn btn--radius-2 btn--blue" onclick="location.href='../hotel/welcome.jsp';" type="submit">
                             Cancel
                         </button>
                     </div>

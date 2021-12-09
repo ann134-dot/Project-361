@@ -22,6 +22,7 @@ public class HotelController extends HttpServlet {
 //        if(!Servlet.isLogged(req)){
 //            resp.sendRedirect("/auth/login");
 //        }else{
+
             Integer operation = Servlet.getOperation(req);
             if(operation == 1) {
                 List<Hotel> hotelList = Hotel.findAll();

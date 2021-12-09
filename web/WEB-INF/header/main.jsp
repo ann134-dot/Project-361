@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<header>
     <head><link rel="stylesheet" type="text/css" href="/css/header.css"></head>
     <div id="navbar">
     <div class="logo-image" onclick="window.location.href='/dashboard';">
@@ -21,23 +20,25 @@
             <c:import url="/WEB-INF/header/cleanerOptions.jsp"/>
         </c:if>
 
-
-    <c:choose>
-        <c:when test ="${sessionEmployee.getAccessLevel() == 'EMPLOYEE' ||
+           <c:choose>
+               <c:when test ="${sessionEmployee.getAccessLevel() == 'EMPLOYEE' ||
                         sessionEmployee.getAccessLevel() == 'MANAGER' ||
                         sessionEmployee.getAccessLevel() == 'USER' ||
                         sessionEmployee.getAccessLevel() == 'CLEANER' }">
-            <li>
-                <h2>${sessionEmployee.getName()}</h2>
-                <a href="/auth/logout">Logout</a>
-            </li>
-        </c:when>
-        <c:otherwise>
-            <div class="user">
-               <li> <a href="/auth/login">Account Page</a> </li>
-            </div>
-        </c:otherwise>
-    </c:choose>
+                   <li> <a href="/dashboard">${sessionEmployee.getName()}</a></li>
+                   <li>
+<%--                          <p style="color: whitesmoke"> </p>--%>
+                       <a href="/auth/logout">Logout</a>
+                   </li>
+               </c:when>
+               <c:otherwise>
+                   <div class="user">
+                       <li> <a href="/auth/login">Account Page</a> </li>
+
+               </c:otherwise>
+           </c:choose>
+       </div>
+
     </ul>
 </div>
-</header>
+

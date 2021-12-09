@@ -10,10 +10,16 @@
 
 }
 
-/*.logo-image{*/
-/*    width: 46px;*/
-/*    height: 46px;*/
-/* }*/
+.logo-image{
+    height: 20%;
+    float: left;
+    color: azure;
+    list-style: none;
+ }
+
+.menu ul li a:hover{
+    color: rgb(199, 139, 255);
+}
 
 #navbar ul li {
     display: inline;
